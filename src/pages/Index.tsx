@@ -2,14 +2,18 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import heroBanner from "@/assets/hero-banner.webp";
 import teamImage from "@/assets/team.jpg";
-
+import heritage1945 from "@/assets/heritage-1945.webp";
+import heritage1959 from "@/assets/heritage-1959.jpg";
+import heritage1979 from "@/assets/heritage-1979.webp";
+import heritage2013 from "@/assets/heritage-2013.webp";
+import heritage2023 from "@/assets/heritage-2023.webp";
 
 const Index = () => {
   const [email, setEmail] = useState("");
-  const sliderRef = useRef<HTMLDivElement>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,34 +23,45 @@ const Index = () => {
   const timelineItems = [
     { 
       year: "1945", 
-      description: "W.A Te Roller opens family Butchery in Bredell Joburg."
+      description: "W.A Te Roller opens family Butchery in Bredell Joburg.",
+      image: heritage1945
     },
     { 
       year: "1959", 
-      description: "Mrs. W.A Te Roller passes blockman trade test, becoming the first woman blockman in South Africa."
+      description: "Mrs. W.A Te Roller passes blockman trade test, becoming the first woman blockman in South Africa.",
+      image: heritage1959
     },
     { 
       year: "1979 - 2012", 
-      description: "L.A Te Roller & his two brothers H Te Roller & W Te Roller start Ranch Meats Centres in the Western Cape."
+      description: "L.A Te Roller & his two brothers H Te Roller & W Te Roller start Ranch Meats Centres in the Western Cape.",
+      image: heritage1979
     },
     { 
       year: "2013", 
-      description: "Simon Parker & Brent Te Roller merge Ranch Meat Centers with a large South African retail business."
+      description: "Simon Parker & Brent Te Roller merge Ranch Meat Centers with a large South African retail business.",
+      image: heritage2013
     },
     { 
       year: "2023", 
-      description: "Simon and Brent chose to return to their family roots, and The Grounds Meat & Deli was created."
+      description: "Simon and Brent chose to return to their family roots, and The Grounds Meat & Deli was created.",
+      image: heritage2023
     },
   ];
 
-  const scrollSlider = (direction: number) => {
-    if (sliderRef.current) {
-      const scrollAmount = 320;
-      sliderRef.current.scrollBy({
-        left: direction * scrollAmount,
-        behavior: 'smooth'
-      });
-    }
+  // Show 2 items at a time, so we have ceil(5/2) = 3 slides
+  const totalSlides = Math.ceil(timelineItems.length / 2);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % totalSlides);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
+  };
+
+  const getCurrentItems = () => {
+    const startIndex = currentSlide * 2;
+    return timelineItems.slice(startIndex, startIndex + 2);
   };
 
   return (
@@ -129,7 +144,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Heritage Timeline with Flip Cards */}
+      {/* Heritage Timeline */}
       <section className="relative section-padding text-cream overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center"
@@ -143,40 +158,34 @@ const Index = () => {
           </h2>
           
           {/* Slider Container */}
-          <div className="relative">
+          <div className="relative flex items-center gap-4">
             {/* Left Arrow */}
             <button 
-              onClick={() => scrollSlider(-1)}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-cream/20 hover:bg-cream/30 rounded-full flex items-center justify-center transition-colors -ml-2 md:-ml-6"
+              onClick={prevSlide}
+              className="flex-shrink-0 w-12 h-12 bg-cream/20 hover:bg-cream/30 rounded-full flex items-center justify-center transition-colors"
             >
               <ChevronLeft className="w-6 h-6 text-cream" />
             </button>
             
-            {/* Flip Box Slider */}
-            <div 
-              ref={sliderRef}
-              className="flex gap-6 overflow-x-auto scrollbar-hide px-8 py-4 snap-x snap-mandatory"
-              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-            >
-              {timelineItems.map((item, index) => (
+            {/* Cards Container */}
+            <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
+              {getCurrentItems().map((item) => (
                 <div
                   key={item.year}
-                  className="flex-shrink-0 w-64 md:w-72 h-80 group perspective snap-center"
+                  className="group perspective"
                 >
-                  <div className="relative w-full h-full transition-transform duration-700 transform-style-3d group-hover:rotate-y-180">
+                  <div className="relative w-full h-80 transition-transform duration-700 transform-style-3d group-hover:rotate-y-180">
                     {/* Front */}
                     <div className="absolute inset-0 backface-hidden rounded-2xl overflow-hidden">
-                      <div 
-                        className="w-full h-full bg-cover bg-center flex items-end justify-center pb-8"
-                        style={{ 
-                          backgroundImage: "url('/images/brick-wall.webp')",
-                        }}
-                      >
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
-                        <span className="relative z-10 font-display text-4xl md:text-5xl text-cream">
-                          {item.year}
-                        </span>
-                      </div>
+                      <img 
+                        src={item.image} 
+                        alt={item.year}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
+                      <span className="absolute bottom-8 left-1/2 -translate-x-1/2 font-display text-4xl md:text-5xl text-cream">
+                        {item.year}
+                      </span>
                     </div>
                     
                     {/* Back */}
@@ -192,11 +201,24 @@ const Index = () => {
             
             {/* Right Arrow */}
             <button 
-              onClick={() => scrollSlider(1)}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-cream/20 hover:bg-cream/30 rounded-full flex items-center justify-center transition-colors -mr-2 md:-mr-6"
+              onClick={nextSlide}
+              className="flex-shrink-0 w-12 h-12 bg-cream/20 hover:bg-cream/30 rounded-full flex items-center justify-center transition-colors"
             >
               <ChevronRight className="w-6 h-6 text-cream" />
             </button>
+          </div>
+          
+          {/* Slide Indicators */}
+          <div className="flex justify-center gap-2 mt-8">
+            {Array.from({ length: totalSlides }).map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  currentSlide === index ? 'bg-cream' : 'bg-cream/40'
+                }`}
+              />
+            ))}
           </div>
         </div>
       </section>
