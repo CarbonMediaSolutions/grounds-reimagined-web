@@ -1,4 +1,4 @@
-import butchersImage from "@/assets/butchers.jpg";
+import teamImage from "@/assets/team.jpg";
 import shopInterior from "@/assets/shop-interior.jpg";
 
 const About = () => {
@@ -46,8 +46,8 @@ const About = () => {
             </div>
             <div className="animate-fade-up" style={{ animationDelay: "0.2s" }}>
               <img
-                src={butchersImage}
-                alt="Our master butchers"
+                src={teamImage}
+                alt="Our master butchers Simon and Brent"
                 className="rounded-2xl shadow-elevated w-full object-cover aspect-[4/3]"
               />
             </div>
