@@ -1,5 +1,4 @@
-import { Star, ChevronLeft, ChevronRight } from "lucide-react";
-import { useState } from "react";
+import { Star } from "lucide-react";
 import recipeBurntEnds from "@/assets/recipe-burnt-ends.jpg";
 import recipeLamb from "@/assets/recipe-lamb.jpg";
 import recipeRagu from "@/assets/recipe-ragu.jpg";
@@ -8,8 +7,6 @@ import recipePork from "@/assets/recipe-pork.jpg";
 import recipeRibStew from "@/assets/recipe-rib-stew.jpg";
 
 const Products = () => {
-  const [reviewIndex, setReviewIndex] = useState(0);
-
   const recipes = [
     { title: "Texas Style Air Fryer Burnt Ends", image: recipeBurntEnds },
     { title: "Slow Cooked Lamb Shank – Greek Style", image: recipeLamb },
@@ -45,13 +42,18 @@ const Products = () => {
 
   return (
     <div>
-      {/* Hero Section */}
-      <section className="py-16 md:py-20 bg-secondary">
-        <div className="container-wide text-center">
-          <h1 className="font-serif text-4xl md:text-5xl text-charcoal mb-4 animate-fade-up">
+      {/* Hero Section with Brick Background */}
+      <section className="relative py-16 md:py-20">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/brick-wall.webp')" }}
+        />
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="container-wide relative z-10 text-center">
+          <h1 className="font-display text-4xl md:text-5xl text-cream mb-4 animate-fade-up tracking-wider">
             Inspirational Cooking
           </h1>
-          <p className="text-muted-foreground text-lg animate-fade-up" style={{ animationDelay: "0.2s" }}>
+          <p className="text-cream/80 text-lg animate-fade-up" style={{ animationDelay: "0.2s" }}>
             Discover delicious recipes featuring our premium cuts
           </p>
         </div>
@@ -75,7 +77,7 @@ const Products = () => {
                   />
                 </div>
                 <div className="p-6">
-                  <h3 className="font-serif text-xl text-charcoal mb-3 group-hover:text-primary transition-colors">
+                  <h3 className="font-display text-xl text-charcoal mb-3 group-hover:text-primary transition-colors">
                     {recipe.title}
                   </h3>
                   <a
@@ -145,23 +147,28 @@ const Products = () => {
         </div>
       </section>
 
-      {/* Hampers Section */}
-      <section className="section-padding bg-background">
-        <div className="container-wide">
-          <h2 className="font-serif text-3xl md:text-4xl text-center text-charcoal mb-12">
+      {/* Hampers Section with Brick Background */}
+      <section className="relative section-padding">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/brick-wall.webp')" }}
+        />
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="container-wide relative z-10">
+          <h2 className="font-display text-3xl md:text-4xl text-center text-cream mb-12">
             Our Hamper Selection
           </h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {hampers.map((hamper, index) => (
               <div
                 key={hamper.name}
-                className="bg-card rounded-2xl p-8 text-center shadow-soft hover-lift animate-fade-up"
+                className="bg-cream/95 rounded-2xl p-8 text-center shadow-soft hover-lift animate-fade-up"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="w-20 h-20 bg-secondary rounded-full mx-auto mb-6 flex items-center justify-center">
-                  <span className="font-serif text-2xl text-primary">🎁</span>
+                  <span className="font-display text-2xl text-primary">🎁</span>
                 </div>
-                <h3 className="font-serif text-xl text-charcoal mb-2">{hamper.name}</h3>
+                <h3 className="font-display text-xl text-charcoal mb-2">{hamper.name}</h3>
                 <p className="text-primary font-semibold text-lg">{hamper.price}</p>
               </div>
             ))}

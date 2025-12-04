@@ -4,16 +4,18 @@ import shopInterior from "@/assets/shop-interior.jpg";
 const About = () => {
   return (
     <div>
-      {/* Hero Section */}
-      <section className="relative py-24 md:py-32 bg-charcoal overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-charcoal" />
-        </div>
+      {/* Hero Section with Brick Background */}
+      <section className="relative py-24 md:py-32 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/brick-wall.webp')" }}
+        />
+        <div className="absolute inset-0 bg-black/50" />
         <div className="container-wide relative z-10 text-center">
-          <h1 className="font-serif text-5xl md:text-6xl text-cream mb-4 animate-fade-up">
+          <h1 className="font-display text-5xl md:text-6xl text-cream mb-4 animate-fade-up tracking-wider">
             Our Story
           </h1>
-          <p className="text-cream/70 text-lg animate-fade-up" style={{ animationDelay: "0.2s" }}>
+          <p className="text-cream/80 text-lg animate-fade-up" style={{ animationDelay: "0.2s" }}>
             Four generations of passion, quality, and craftsmanship
           </p>
         </div>
@@ -24,7 +26,7 @@ const About = () => {
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start mb-20">
             <div className="animate-fade-up">
-              <h2 className="font-serif text-3xl md:text-4xl text-charcoal mb-6">
+              <h2 className="font-display text-3xl md:text-4xl text-charcoal mb-6">
                 About Us
               </h2>
               <div className="prose prose-lg text-muted-foreground space-y-6">

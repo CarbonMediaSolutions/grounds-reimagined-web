@@ -1,14 +1,31 @@
 import { Link } from "react-router-dom";
 import { Instagram, Facebook, MessageCircle } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-b from-brick to-brown-deep text-cream">
-      <div className="container-wide py-16">
+    <footer className="relative text-cream">
+      {/* Brick Background */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: "url('/images/brick-wall.webp')" }}
+      />
+      <div className="absolute inset-0 bg-black/60" />
+      
+      <div className="container-wide py-16 relative z-10">
+        {/* Logo centered at top */}
+        <div className="flex justify-center mb-10">
+          <img 
+            src={logo} 
+            alt="The Grounds Logo" 
+            className="w-24 h-24 bg-cream rounded-full p-1"
+          />
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Links */}
           <div>
-            <h3 className="font-serif text-xl mb-6 border-b border-cream/20 pb-2">Links</h3>
+            <h3 className="font-display text-xl mb-6 border-b border-cream/20 pb-2">Links</h3>
             <ul className="space-y-3">
               <li>
                 <Link to="/about" className="text-cream/80 hover:text-cream transition-colors">
@@ -35,7 +52,7 @@ const Footer = () => {
 
           {/* Hours */}
           <div className="text-center">
-            <h3 className="font-serif text-xl mb-6 border-b border-cream/20 pb-2">Hours</h3>
+            <h3 className="font-display text-xl mb-6 border-b border-cream/20 pb-2">Hours</h3>
             <ul className="space-y-3 text-cream/80">
               <li>Monday – Friday: 9am – 6pm</li>
               <li>Saturday: 8am – 4pm</li>
@@ -45,7 +62,7 @@ const Footer = () => {
 
           {/* Visit Us */}
           <div className="text-right md:text-right">
-            <h3 className="font-serif text-xl mb-6 border-b border-cream/20 pb-2">Visit Us</h3>
+            <h3 className="font-display text-xl mb-6 border-b border-cream/20 pb-2">Visit Us</h3>
             <p className="text-cream/80 mb-6">
               76 Edward Road, Bellville,<br />
               Cape Town.
@@ -53,7 +70,7 @@ const Footer = () => {
             
             {/* Socials */}
             <div>
-              <h4 className="font-serif text-lg mb-4 border-b border-cream/20 pb-2">Socials</h4>
+              <h4 className="font-display text-lg mb-4 border-b border-cream/20 pb-2">Socials</h4>
               <div className="flex gap-4 justify-end">
                 <a
                   href="#"
