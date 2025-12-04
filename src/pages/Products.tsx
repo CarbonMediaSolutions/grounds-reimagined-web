@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Star } from "lucide-react";
 import recipeBurntEnds from "@/assets/recipe-burnt-ends.jpg";
 import recipeLamb from "@/assets/recipe-lamb.jpg";
@@ -8,12 +9,12 @@ import recipeRibStew from "@/assets/recipe-rib-stew.jpg";
 
 const Products = () => {
   const recipes = [
-    { title: "Texas Style Air Fryer Burnt Ends", image: recipeBurntEnds },
-    { title: "Slow Cooked Lamb Shank – Greek Style", image: recipeLamb },
-    { title: "Italian Style Pappardelle Ragù", image: recipeRagu },
-    { title: "Traditional Christmas Gammon", image: recipeGammon },
-    { title: "Classic Sunday Roast – Pork Belly", image: recipePork },
-    { title: "Beef Short Rib Stew", image: recipeRibStew },
+    { title: "Texas Style Air Fryer Burnt Ends", image: recipeBurntEnds, slug: "burnt-ends" },
+    { title: "Slow Cooked Lamb Shank – Greek Style", image: recipeLamb, slug: "lamb-shank" },
+    { title: "Italian Style Pappardelle Ragù", image: recipeRagu, slug: "ragu" },
+    { title: "Traditional Christmas Gammon", image: recipeGammon, slug: "gammon" },
+    { title: "Classic Sunday Roast – Pork Belly", image: recipePork, slug: "pork-belly" },
+    { title: "Beef Short Rib Stew", image: recipeRibStew, slug: "rib-stew" },
   ];
 
   const reviews = [
@@ -64,9 +65,10 @@ const Products = () => {
         <div className="container-wide">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {recipes.map((recipe, index) => (
-              <article
+              <Link
                 key={recipe.title}
-                className="group bg-card rounded-2xl overflow-hidden shadow-soft hover-lift animate-fade-up"
+                to={`/recipes/${recipe.slug}`}
+                className="group bg-card rounded-2xl overflow-hidden shadow-soft hover-lift animate-fade-up block"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="aspect-[4/3] overflow-hidden">
@@ -80,14 +82,11 @@ const Products = () => {
                   <h3 className="font-display text-xl text-charcoal mb-3 group-hover:text-primary transition-colors">
                     {recipe.title}
                   </h3>
-                  <a
-                    href="#"
-                    className="text-primary font-medium hover:underline inline-flex items-center gap-1"
-                  >
+                  <span className="text-primary font-medium inline-flex items-center gap-1">
                     Read More →
-                  </a>
+                  </span>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>

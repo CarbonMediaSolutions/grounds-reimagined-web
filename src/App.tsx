@@ -11,6 +11,12 @@ import About from "./pages/About";
 import Products from "./pages/Products";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import BurntEnds from "./pages/recipes/BurntEnds";
+import LambShank from "./pages/recipes/LambShank";
+import Ragu from "./pages/recipes/Ragu";
+import Gammon from "./pages/recipes/Gammon";
+import PorkBelly from "./pages/recipes/PorkBelly";
+import RibStew from "./pages/recipes/RibStew";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +34,12 @@ const App = () => (
               <Route path="/about" element={<About />} />
               <Route path="/products" element={<Products />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/recipes/burnt-ends" element={<BurntEnds />} />
+              <Route path="/recipes/lamb-shank" element={<LambShank />} />
+              <Route path="/recipes/ragu" element={<Ragu />} />
+              <Route path="/recipes/gammon" element={<Gammon />} />
+              <Route path="/recipes/pork-belly" element={<PorkBelly />} />
+              <Route path="/recipes/rib-stew" element={<RibStew />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
