@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowLeft, Download } from "lucide-react";
+import { ArrowLeft, Download, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import recipeBurntEnds from "@/assets/recipe-burnt-ends.jpg";
 
@@ -30,13 +30,25 @@ const BurntEnds = () => {
           <div className="grid md:grid-cols-2 gap-12 items-start">
             {/* Video/Image */}
             <div>
-              <img
-                src={recipeBurntEnds}
-                alt="Texas Style Air Fryer Burnt Ends"
-                className="rounded-2xl shadow-elevated w-full aspect-video object-cover mb-6"
-              />
-              <p className="text-muted-foreground text-center italic">
-                Recipe video coming soon
+              <a 
+                href="https://www.facebook.com/reel/1782855178945272" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block relative rounded-2xl overflow-hidden shadow-elevated group"
+              >
+                <img
+                  src={recipeBurntEnds}
+                  alt="Texas Style Air Fryer Burnt Ends"
+                  className="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/30 transition-colors">
+                  <div className="w-16 h-16 bg-cream/90 rounded-full flex items-center justify-center">
+                    <Play className="w-8 h-8 text-primary fill-primary ml-1" />
+                  </div>
+                </div>
+              </a>
+              <p className="text-muted-foreground text-center mt-4 text-sm">
+                Click to watch the recipe video on Facebook
               </p>
             </div>
 
@@ -44,12 +56,19 @@ const BurntEnds = () => {
             <div>
               <h2 className="font-display text-2xl text-charcoal mb-4">Recipe Details</h2>
               <p className="text-muted-foreground mb-6">
-                Content will be added in the next update with full recipe instructions, ingredients, and a downloadable PDF.
+                Learn how to make delicious Texas-style burnt ends using your air fryer. 
+                Download the full recipe PDF below for ingredients and step-by-step instructions.
               </p>
-              <Button variant="outline" className="gap-2" disabled>
-                <Download className="w-4 h-4" />
-                Download Recipe PDF
-              </Button>
+              <a 
+                href="/recipes/Texas-Style-Air-Fryer-Burnt-Ends.pdf" 
+                download
+                className="inline-block"
+              >
+                <Button className="gap-2">
+                  <Download className="w-4 h-4" />
+                  Download Recipe PDF
+                </Button>
+              </a>
             </div>
           </div>
         </div>
