@@ -137,6 +137,18 @@
     @apply py-16 md:py-24;
   }
 
+  .brick-bg {
+    background-image: url('/images/brick-wall.webp');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .brick-bg-overlay {
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('/images/brick-wall.webp');
+    background-size: cover;
+    background-position: center;
+  }
+
   .brick-texture {
     background: 
       linear-gradient(180deg, hsl(var(--brick) / 0.95) 0%, hsl(var(--brown-deep)) 100%),

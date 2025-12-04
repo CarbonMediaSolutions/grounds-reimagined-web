@@ -23,13 +23,18 @@ const Contact = () => {
 
   return (
     <div>
-      {/* Hero Section */}
-      <section className="py-16 md:py-20 bg-secondary">
-        <div className="container-wide text-center">
-          <h1 className="font-serif text-4xl md:text-5xl text-charcoal mb-4 animate-fade-up">
+      {/* Hero Section with Brick Background */}
+      <section className="relative py-16 md:py-20">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/brick-wall.webp')" }}
+        />
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="container-wide relative z-10 text-center">
+          <h1 className="font-display text-4xl md:text-5xl text-cream mb-4 animate-fade-up tracking-wider">
             Reach Out
           </h1>
-          <p className="text-muted-foreground text-lg animate-fade-up" style={{ animationDelay: "0.2s" }}>
+          <p className="text-cream/80 text-lg animate-fade-up" style={{ animationDelay: "0.2s" }}>
             We'd love to hear from you
           </p>
         </div>

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 import heroImage from "@/assets/hero-meat.jpg";
 import butchersImage from "@/assets/butchers.jpg";
@@ -24,17 +24,22 @@ const Index = () => {
 
   return (
     <div>
-      {/* Hero Section */}
-      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+      {/* Hero Section with Brick Background */}
+      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/brick-wall.webp')" }}
+        />
+        <div className="absolute inset-0 bg-black/50" />
+        
+        {/* Meat overlay image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-overlay"
           style={{ backgroundImage: `url(${heroImage})` }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-charcoal/50 to-charcoal/70" />
-        </div>
+        />
         
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <h1 className="font-serif text-5xl md:text-7xl text-cream mb-6 animate-fade-up">
+          <h1 className="font-display text-5xl md:text-7xl text-cream mb-6 animate-fade-up tracking-wider">
             Tradition Tastes Better.
           </h1>
           <p className="text-cream/90 text-xl md:text-2xl mb-10 font-light animate-fade-up" style={{ animationDelay: "0.2s" }}>
@@ -50,11 +55,11 @@ const Index = () => {
       </section>
 
       {/* Newsletter Section */}
-      <section className="section-padding bg-secondary">
+      <section className="section-padding bg-background">
         <div className="container-wide">
           <div className="max-w-xl mx-auto">
             <div className="bg-card rounded-2xl p-8 md:p-10 shadow-card text-center">
-              <h2 className="font-serif text-2xl md:text-3xl text-charcoal mb-4">
+              <h2 className="font-display text-2xl md:text-3xl text-charcoal mb-4">
                 Join Our Monthly Newsletter
               </h2>
               <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 mb-4">
@@ -78,11 +83,11 @@ const Index = () => {
       </section>
 
       {/* About Preview Section */}
-      <section className="section-padding bg-background">
+      <section className="section-padding bg-secondary">
         <div className="container-wide">
           <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
-              <h2 className="font-serif text-3xl md:text-4xl text-charcoal mb-6">
+              <h2 className="font-display text-3xl md:text-4xl text-charcoal mb-6">
                 Four Generations of Excellence
               </h2>
               <p className="text-muted-foreground text-lg leading-relaxed mb-8">
@@ -106,7 +111,7 @@ const Index = () => {
                 className="rounded-2xl shadow-elevated w-full object-cover aspect-[4/3]"
               />
               <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-primary rounded-2xl flex items-center justify-center">
-                <span className="font-serif text-3xl text-primary-foreground">4th</span>
+                <span className="font-display text-3xl text-primary-foreground">4th</span>
                 <span className="text-primary-foreground text-sm ml-1">Gen</span>
               </div>
             </div>
@@ -114,20 +119,26 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Heritage Timeline */}
-      <section className="section-padding bg-secondary">
-        <div className="container-wide">
-          <h2 className="font-serif text-3xl md:text-4xl text-center text-charcoal mb-12">
+      {/* Heritage Timeline with Brick Background */}
+      <section className="relative section-padding text-cream">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/brick-wall.webp')" }}
+        />
+        <div className="absolute inset-0 bg-black/50" />
+        
+        <div className="container-wide relative z-10">
+          <h2 className="font-display text-3xl md:text-4xl text-center mb-12">
             Our Heritage
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {timelineItems.map((item, index) => (
               <div
                 key={item.year}
-                className="bg-card rounded-2xl p-6 text-center shadow-soft hover-lift"
+                className="bg-cream/95 rounded-2xl p-6 text-center shadow-soft hover-lift"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <span className="font-serif text-4xl text-primary block mb-2">
+                <span className="font-display text-4xl text-primary block mb-2">
                   {item.year}
                 </span>
                 <h3 className="font-semibold text-charcoal mb-2">{item.title}</h3>
@@ -139,23 +150,23 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding bg-primary text-primary-foreground">
+      <section className="section-padding bg-background">
         <div className="container-wide text-center">
-          <h2 className="font-serif text-3xl md:text-4xl mb-6">
+          <h2 className="font-display text-3xl md:text-4xl text-charcoal mb-6">
             Visit Us Today
           </h2>
-          <p className="text-primary-foreground/80 text-lg mb-8 max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto">
             Experience the difference that four generations of expertise makes. 
             Our master butchers are ready to help you find the perfect cut.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact">
-              <Button variant="hero" size="lg">
+              <Button size="lg">
                 Get Directions
               </Button>
             </Link>
             <Link to="/products">
-              <Button variant="outline" size="lg" className="border-cream text-cream hover:bg-cream hover:text-primary">
+              <Button variant="outline" size="lg">
                 View Products
               </Button>
             </Link>
