@@ -1,4 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+/* Aspekta font from Fontshare */
+@import url('https://api.fontshare.com/v2/css?f[]=aspekta@500&display=swap');
+
+/* Road Race custom font for headings */
+@font-face {
+  font-family: 'Road Race';
+  src: url('/fonts/road-race-regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 @tailwind base;
 @tailwind components;
@@ -6,39 +16,40 @@
 
 @layer base {
   :root {
-    --background: 40 30% 95%;
+    /* Primary cream color: #EDE2CC = hsl(40, 37%, 87%) */
+    --background: 40 37% 87%;
     --foreground: 0 0% 15%;
 
-    --card: 40 30% 97%;
+    --card: 40 37% 91%;
     --card-foreground: 0 0% 15%;
 
-    --popover: 40 30% 97%;
+    --popover: 40 37% 91%;
     --popover-foreground: 0 0% 15%;
 
     --primary: 10 40% 25%;
-    --primary-foreground: 40 30% 95%;
+    --primary-foreground: 40 37% 87%;
 
-    --secondary: 40 25% 90%;
+    --secondary: 40 30% 82%;
     --secondary-foreground: 0 0% 15%;
 
-    --muted: 40 20% 88%;
+    --muted: 40 25% 78%;
     --muted-foreground: 0 0% 40%;
 
     --accent: 10 35% 30%;
-    --accent-foreground: 40 30% 95%;
+    --accent-foreground: 40 37% 87%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 30 20% 80%;
-    --input: 30 20% 85%;
+    --border: 30 25% 75%;
+    --input: 30 25% 80%;
     --ring: 10 40% 25%;
 
     --radius: 0.75rem;
 
     /* Custom colors */
-    --cream: 40 30% 93%;
-    --cream-dark: 40 25% 88%;
+    --cream: 40 37% 87%;
+    --cream-dark: 40 30% 80%;
     --charcoal: 0 0% 18%;
     --charcoal-light: 0 0% 25%;
     --brown-deep: 10 40% 22%;
@@ -48,7 +59,7 @@
     
     /* Gradients */
     --gradient-hero: linear-gradient(180deg, hsl(0 0% 0% / 0.4) 0%, hsl(0 0% 0% / 0.6) 100%);
-    --gradient-card: linear-gradient(180deg, hsl(40 30% 97%) 0%, hsl(40 25% 94%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(40 37% 91%) 0%, hsl(40 30% 88%) 100%);
     --gradient-brick: linear-gradient(180deg, hsl(15 50% 30% / 0.95) 0%, hsl(10 40% 22%) 100%);
     
     /* Shadows */
@@ -68,35 +79,35 @@
 
   .dark {
     --background: 0 0% 12%;
-    --foreground: 40 30% 95%;
+    --foreground: 40 37% 87%;
 
     --card: 0 0% 15%;
-    --card-foreground: 40 30% 95%;
+    --card-foreground: 40 37% 87%;
 
     --popover: 0 0% 15%;
-    --popover-foreground: 40 30% 95%;
+    --popover-foreground: 40 37% 87%;
 
-    --primary: 40 30% 90%;
+    --primary: 40 37% 87%;
     --primary-foreground: 0 0% 15%;
 
     --secondary: 0 0% 20%;
-    --secondary-foreground: 40 30% 95%;
+    --secondary-foreground: 40 37% 87%;
 
     --muted: 0 0% 20%;
-    --muted-foreground: 40 20% 70%;
+    --muted-foreground: 40 25% 70%;
 
     --accent: 15 35% 45%;
-    --accent-foreground: 40 30% 95%;
+    --accent-foreground: 40 37% 87%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 0 0% 25%;
     --input: 0 0% 25%;
-    --ring: 40 30% 90%;
+    --ring: 40 37% 87%;
 
     --cream: 0 0% 15%;
-    --charcoal: 40 30% 95%;
+    --charcoal: 40 37% 87%;
     --brown-deep: 15 35% 50%;
     --brick: 15 40% 40%;
   }
@@ -109,10 +120,11 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    font-weight: 500;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif;
+    @apply font-display;
   }
 }
 
