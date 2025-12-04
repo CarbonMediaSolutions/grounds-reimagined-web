@@ -5,7 +5,7 @@ import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useRef } from "react";
 import heroBanner from "@/assets/hero-banner.webp";
 import teamImage from "@/assets/team.jpg";
-import logo from "@/assets/logo.png";
+
 
 const Index = () => {
   const [email, setEmail] = useState("");
@@ -51,47 +51,19 @@ const Index = () => {
 
   return (
     <div>
-      {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+      {/* Hero Section - Clickable WhatsApp Banner */}
+      <a 
+        href="https://wa.me/27000000000" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="block relative min-h-[50vh] md:min-h-[60vh] overflow-hidden cursor-pointer group"
+      >
         <div
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
           style={{ backgroundImage: `url(${heroBanner})` }}
         />
-        <div className="absolute inset-0 bg-black/40" />
-        
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          {/* Logo */}
-          <div className="flex justify-center mb-8 animate-fade-up">
-            <img 
-              src={logo} 
-              alt="The Grounds Logo" 
-              className="w-20 h-20 md:w-24 md:h-24 bg-cream rounded-full p-1"
-            />
-          </div>
-          
-          <h1 className="font-display text-3xl md:text-5xl lg:text-6xl text-cream mb-4 animate-fade-up tracking-wider uppercase">
-            Join our WhatsApp group
-          </h1>
-          <p className="text-cream/90 text-xl md:text-2xl mb-10 animate-fade-up tracking-wide uppercase" style={{ animationDelay: "0.2s" }}>
-            for weekly specials and updates!
-          </p>
-          <div className="animate-fade-up" style={{ animationDelay: "0.4s" }}>
-            <Button variant="whatsapp" size="lg" className="gap-3">
-              Join WhatsApp Group
-              <ArrowRight className="w-5 h-5" />
-            </Button>
-          </div>
-          
-          {/* Tradition Line */}
-          <div className="mt-16 flex items-center justify-center gap-4 animate-fade-up" style={{ animationDelay: "0.6s" }}>
-            <div className="h-px w-16 md:w-32 bg-cream/50" />
-            <span className="text-cream font-display text-sm md:text-base tracking-[0.3em] uppercase">
-              Tradition Tastes Better
-            </span>
-            <div className="h-px w-16 md:w-32 bg-cream/50" />
-          </div>
-        </div>
-      </section>
+        <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors duration-300" />
+      </a>
 
       {/* Newsletter Section */}
       <section className="section-padding bg-background">
