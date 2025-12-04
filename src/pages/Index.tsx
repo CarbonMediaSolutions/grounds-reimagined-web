@@ -56,13 +56,12 @@ const Index = () => {
         href="https://wa.me/27000000000" 
         target="_blank" 
         rel="noopener noreferrer"
-        className="block relative min-h-[50vh] md:min-h-[60vh] overflow-hidden cursor-pointer group"
+        className="block relative min-h-[50vh] md:min-h-[60vh] overflow-hidden cursor-pointer"
       >
         <div
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+          className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${heroBanner})` }}
         />
-        <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors duration-300" />
       </a>
 
       {/* Newsletter Section */}
