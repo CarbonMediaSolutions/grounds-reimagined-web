@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
-import { ArrowLeft, Download, Play } from "lucide-react";
+import { ArrowLeft, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import recipePork from "@/assets/recipe-pork.jpg";
 
 const PorkBelly = () => {
   return (
@@ -28,28 +27,19 @@ const PorkBelly = () => {
       <section className="section-padding bg-background">
         <div className="container-wide max-w-4xl">
           <div className="grid md:grid-cols-2 gap-12 items-start">
-            {/* Video/Image */}
+            {/* Embedded Video */}
             <div>
-              <a 
-                href="https://www.facebook.com/reel/509348781753768" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="block relative rounded-2xl overflow-hidden shadow-elevated group"
-              >
-                <img
-                  src={recipePork}
-                  alt="Classic Sunday Roast Pork Belly"
-                  className="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-500"
+              <div className="rounded-2xl overflow-hidden shadow-elevated aspect-[9/16] max-h-[500px]">
+                <iframe
+                  src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/509348781753768&show_text=false"
+                  className="w-full h-full"
+                  style={{ border: 'none', overflow: 'hidden' }}
+                  scrolling="no"
+                  frameBorder="0"
+                  allowFullScreen={true}
+                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
                 />
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/30 transition-colors">
-                  <div className="w-16 h-16 bg-cream/90 rounded-full flex items-center justify-center">
-                    <Play className="w-8 h-8 text-primary fill-primary ml-1" />
-                  </div>
-                </div>
-              </a>
-              <p className="text-muted-foreground text-center mt-4 text-sm">
-                Click to watch the recipe video on Facebook
-              </p>
+              </div>
             </div>
 
             {/* Recipe Details */}
