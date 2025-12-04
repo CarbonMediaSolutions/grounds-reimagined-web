@@ -1,7 +1,42 @@
+import { useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import teamImage from "@/assets/team.jpg";
 import shopInterior from "@/assets/shop-interior.jpg";
+import aboutSlide1 from "@/assets/about-slide-1.jpg";
+import aboutSlide2 from "@/assets/about-slide-2.jpg";
+import aboutSlide3 from "@/assets/about-slide-3.jpg";
+import aboutSlide4 from "@/assets/about-slide-4.jpg";
+import aboutSlide5 from "@/assets/about-slide-5.jpg";
+import aboutSlide6 from "@/assets/about-slide-6.jpg";
 
 const About = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  
+  const slides = [
+    { src: aboutSlide1, alt: "Our friendly team members" },
+    { src: aboutSlide2, alt: "Staff in the store" },
+    { src: aboutSlide3, alt: "The Grounds team Christmas photo" },
+    { src: aboutSlide4, alt: "Team members smiling" },
+    { src: aboutSlide5, alt: "Our dedicated staff" },
+    { src: aboutSlide6, alt: "Master butchers at work" },
+  ];
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
+  // Auto-advance slideshow
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [slides.length]);
+
   return (
     <div>
       {/* Hero Section with Brick Background */}
@@ -94,12 +129,71 @@ const About = () => {
           </div>
 
           {/* Shop Interior */}
-          <div className="animate-fade-up">
+          <div className="animate-fade-up mb-20">
             <img
               src={shopInterior}
               alt="Our beautiful shop interior"
               className="rounded-2xl shadow-elevated w-full object-cover aspect-[21/9]"
             />
+          </div>
+        </div>
+      </section>
+
+      {/* Team Slideshow Section */}
+      <section className="relative section-padding overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/brick-wall.webp')" }}
+        />
+        <div className="absolute inset-0 bg-black/60" />
+        
+        <div className="container-wide relative z-10">
+          <h2 className="font-display text-3xl md:text-4xl text-cream text-center mb-12">
+            Meet Our Team
+          </h2>
+          
+          {/* Slideshow */}
+          <div className="relative max-w-4xl mx-auto">
+            {/* Main Image */}
+            <div className="relative aspect-[16/10] rounded-2xl overflow-hidden">
+              {slides.map((slide, index) => (
+                <img
+                  key={index}
+                  src={slide.src}
+                  alt={slide.alt}
+                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+                    currentSlide === index ? 'opacity-100' : 'opacity-0'
+                  }`}
+                />
+              ))}
+            </div>
+            
+            {/* Navigation Arrows */}
+            <button 
+              onClick={prevSlide}
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-cream/20 hover:bg-cream/30 rounded-full flex items-center justify-center transition-colors"
+            >
+              <ChevronLeft className="w-6 h-6 text-cream" />
+            </button>
+            <button 
+              onClick={nextSlide}
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-cream/20 hover:bg-cream/30 rounded-full flex items-center justify-center transition-colors"
+            >
+              <ChevronRight className="w-6 h-6 text-cream" />
+            </button>
+            
+            {/* Dots */}
+            <div className="flex justify-center gap-2 mt-6">
+              {slides.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`w-2 h-2 rounded-full transition-colors ${
+                    currentSlide === index ? 'bg-cream' : 'bg-cream/40'
+                  }`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
