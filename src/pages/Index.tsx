@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
-import heroBanner from "@/assets/hero-banner.webp";
 import teamImage from "@/assets/team.jpg";
 import heritage1945 from "@/assets/heritage-1945.webp";
 import heritage1959 from "@/assets/heritage-1959.jpg";
@@ -73,9 +72,11 @@ const Index = () => {
         rel="noopener noreferrer"
         className="block relative min-h-[50vh] md:min-h-[60vh] overflow-hidden cursor-pointer"
       >
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${heroBanner})` }}
+        <img
+          src="/images/hero-banner.webp"
+          alt="The Grounds Meat & Deli hero banner"
+          className="absolute inset-0 w-full h-full object-cover"
+          fetchPriority="high"
         />
       </a>
 
@@ -134,6 +135,7 @@ const Index = () => {
                 src={teamImage}
                 alt="Our master butchers Simon and Brent"
                 className="rounded-2xl shadow-elevated w-full object-cover aspect-[4/3]"
+                loading="lazy"
               />
               <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-primary rounded-2xl flex items-center justify-center">
                 <span className="font-display text-3xl text-primary-foreground">4th</span>
@@ -181,6 +183,7 @@ const Index = () => {
                         src={item.image} 
                         alt={item.year}
                         className="w-full h-full object-cover"
+                        loading="lazy"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
                       <span className="absolute bottom-8 left-1/2 -translate-x-1/2 font-display text-4xl md:text-5xl text-cream">
