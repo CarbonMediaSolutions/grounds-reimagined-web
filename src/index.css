@@ -1,5 +1,4 @@
-/* Aspekta font from Fontshare */
-@import url('https://api.fontshare.com/v2/css?f[]=aspekta@500&display=swap');
+/* Aspekta font loaded via index.html for better performance */
 
 /* Road Race custom font for headings */
 @font-face {
