@@ -32,7 +32,7 @@ const Navbar = () => {
               <img 
                 src={logo} 
                 alt="The Grounds Logo" 
-                className="w-16 h-16 md:w-20 md:h-20 bg-cream rounded-full p-1"
+                className="w-20 h-20 md:w-24 md:h-24"
               />
             </Link>
 
@@ -51,7 +51,7 @@ const Navbar = () => {
               <img 
                 src={logo} 
                 alt="The Grounds Logo" 
-                className="w-16 h-16 md:w-20 md:h-20 bg-cream rounded-full p-1"
+                className="w-20 h-20 md:w-24 md:h-24"
               />
             </Link>
 
