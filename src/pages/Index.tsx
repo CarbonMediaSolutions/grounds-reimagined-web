@@ -174,10 +174,6 @@ const Index = () => {
                 className="rounded-2xl shadow-elevated w-full object-cover aspect-[4/3]"
                 loading="lazy"
               />
-              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-primary rounded-2xl flex items-center justify-center">
-                <span className="font-display text-3xl text-primary-foreground">4th</span>
-                <span className="text-primary-foreground text-sm ml-1">Gen</span>
-              </div>
             </div>
           </div>
         </div>
