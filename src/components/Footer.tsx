@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { Instagram, Facebook, MessageCircle } from "lucide-react";
+import { Instagram, Facebook } from "lucide-react";
 import logo from "@/assets/logo.png";
-
+import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 const Footer = () => {
   return (
     <footer className="relative text-cream">
@@ -18,7 +18,7 @@ const Footer = () => {
           <img 
             src={logo} 
             alt="The Grounds Logo" 
-            className="w-24 h-24 bg-cream rounded-full p-1"
+            className="w-28 h-28"
           />
         </div>
 
@@ -86,9 +86,9 @@ const Footer = () => {
                 </a>
                 <a
                   href="#"
-                  className="w-10 h-10 rounded-full bg-[#25D366] flex items-center justify-center hover:bg-[#20BD5A] transition-colors"
+                  className="w-10 h-10 rounded-full bg-[#25D366] flex items-center justify-center hover:bg-[#20BD5A] transition-colors text-white"
                 >
-                  <MessageCircle className="w-5 h-5" />
+                  <WhatsAppIcon className="w-5 h-5" />
                 </a>
               </div>
             </div>
