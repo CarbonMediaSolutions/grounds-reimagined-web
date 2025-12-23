@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Star } from "lucide-react";
+import { Star, Download } from "lucide-react";
 import recipeBurntEnds from "@/assets/recipe-burnt-ends.jpg";
 import recipeLamb from "@/assets/recipe-lamb.jpg";
 import recipeRagu from "@/assets/recipe-ragu.jpg";
@@ -36,9 +36,9 @@ const Products = () => {
   ];
 
   const hampers = [
-    { name: "The Grounds Mini Hamper", price: "R450" },
-    { name: "The Grounds Midi Hamper", price: "R850" },
-    { name: "The Grounds Maxi Hamper", price: "R1,250" },
+    { name: "The Grounds Mini Hamper", price: "R450", pdf: "/hampers/mini-hamper.pdf" },
+    { name: "The Grounds Midi Hamper", price: "R850", pdf: "/hampers/midi-hamper.pdf" },
+    { name: "The Grounds Maxi Hamper", price: "R1,250", pdf: "/hampers/maxi-hamper.pdf" },
   ];
 
   return (
@@ -159,17 +159,23 @@ const Products = () => {
           </h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {hampers.map((hamper, index) => (
-              <div
+              <a
                 key={hamper.name}
-                className="bg-cream/95 rounded-2xl p-8 text-center shadow-soft hover-lift animate-fade-up"
+                href={hamper.pdf}
+                download
+                className="bg-cream/95 rounded-2xl p-8 text-center shadow-soft hover-lift animate-fade-up block"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="w-20 h-20 bg-secondary rounded-full mx-auto mb-6 flex items-center justify-center">
                   <span className="font-display text-2xl text-primary">🎁</span>
                 </div>
                 <h3 className="font-display text-xl text-charcoal mb-2">{hamper.name}</h3>
-                <p className="text-primary font-semibold text-lg">{hamper.price}</p>
-              </div>
+                <p className="text-primary font-semibold text-lg mb-4">{hamper.price}</p>
+                <span className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+                  <Download className="w-4 h-4" />
+                  Download PDF
+                </span>
+              </a>
             ))}
           </div>
         </div>
