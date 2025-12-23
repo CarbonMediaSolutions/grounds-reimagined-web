@@ -1,1 +1,4 @@
 project_id = "hqlfflocyzubkjfwuvbg"
+
+[functions.mailblaze-subscribe]
+verify_jwt = false

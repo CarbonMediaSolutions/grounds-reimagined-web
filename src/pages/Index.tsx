@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 import teamImage from "@/assets/team.jpg";
 import heritage1945 from "@/assets/heritage-1945.webp";
 import heritage1959 from "@/assets/heritage-1959.jpg";
@@ -13,10 +15,44 @@ import heritage2023 from "@/assets/heritage-2023.webp";
 const Index = () => {
   const [email, setEmail] = useState("");
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const { toast } = useToast();
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    setEmail("");
+    
+    if (!email || !email.includes("@")) {
+      toast({
+        title: "Invalid email",
+        description: "Please enter a valid email address.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubscribing(true);
+    try {
+      const { data, error } = await supabase.functions.invoke("mailblaze-subscribe", {
+        body: { email },
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Subscribed!",
+        description: "Thank you for joining our newsletter.",
+      });
+      setEmail("");
+    } catch (error) {
+      console.error("Subscription error:", error);
+      toast({
+        title: "Subscription failed",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubscribing(false);
+    }
   };
 
   const timelineItems = [
@@ -95,9 +131,10 @@ const Index = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="flex-1 h-12 rounded-lg"
+                  disabled={isSubscribing}
                 />
-                <Button type="submit" className="h-12 px-8">
-                  Subscribe
+                <Button type="submit" className="h-12 px-8" disabled={isSubscribing}>
+                  {isSubscribing ? "Subscribing..." : "Subscribe"}
                 </Button>
               </form>
               <p className="text-sm text-muted-foreground">
