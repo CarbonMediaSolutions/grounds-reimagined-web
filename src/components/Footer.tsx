@@ -73,19 +73,25 @@ const Footer = () => {
               <h4 className="font-display text-lg mb-4 border-b border-cream/20 pb-2">Socials</h4>
               <div className="flex gap-4 justify-end">
                 <a
-                  href="#"
+                  href="https://www.instagram.com/thegrounds_deli/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-cream/10 flex items-center justify-center hover:bg-cream/20 transition-colors"
                 >
                   <Instagram className="w-5 h-5" />
                 </a>
                 <a
-                  href="#"
+                  href="https://www.facebook.com/p/The-Grounds-Meat-Deli-61550779858277/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-cream/10 flex items-center justify-center hover:bg-cream/20 transition-colors"
                 >
                   <Facebook className="w-5 h-5" />
                 </a>
                 <a
-                  href="#"
+                  href="https://wa.me/27000000000"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-[#25D366] flex items-center justify-center hover:bg-[#20BD5A] transition-colors text-white"
                 >
                   <WhatsAppIcon className="w-5 h-5" />
