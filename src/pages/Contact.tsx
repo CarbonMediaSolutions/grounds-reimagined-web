@@ -108,7 +108,7 @@ const Contact = () => {
         <div className="container-wide">
           <div className="rounded-2xl overflow-hidden shadow-elevated">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3310.5!2d18.6389!3d-33.9089!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDU0JzMyLjAiUyAxOMKwMzgnMjAuMCJF!5e0!3m2!1sen!2sza!4v1234567890"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3310.8!2d18.6315!3d-33.8755!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc514d4d4be3c1%3A0x4b34c8c5b8c8c8c8!2s76%20Edward%20Rd%2C%20Tygervalley%2C%20Cape%20Town%2C%207530!5e0!3m2!1sen!2sza!4v1703324400000!5m2!1sen!2sza"
               width="100%"
               height="400"
               style={{ border: 0 }}
@@ -124,7 +124,7 @@ const Contact = () => {
               <strong className="text-charcoal">76 Edward Road, Tygervalley, Cape Town, 7530</strong>
             </p>
             <a
-              href="https://maps.google.com"
+              href="https://www.google.com/maps/dir/?api=1&destination=76+Edward+Road,+Tygervalley,+Cape+Town,+7530"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:underline mt-2 inline-block"
