@@ -12,6 +12,7 @@ import heritage1959 from "@/assets/heritage-1959.jpg";
 import heritage1979 from "@/assets/heritage-1979.webp";
 import heritage2013 from "@/assets/heritage-2013.webp";
 import heritage2023 from "@/assets/heritage-2023.webp";
+import heroBannerMobile from "@/assets/hero-banner-mobile.png";
 
 const Index = () => {
   const [email, setEmail] = useState("");
@@ -111,10 +112,18 @@ const Index = () => {
         rel="noopener noreferrer"
         className="block relative w-full overflow-hidden cursor-pointer"
       >
+        {/* Mobile Banner */}
+        <img
+          src={heroBannerMobile}
+          alt="The Grounds Meat & Deli hero banner"
+          className="w-full h-auto object-contain md:hidden"
+          fetchPriority="high"
+        />
+        {/* Desktop Banner */}
         <img
           src="/images/hero-banner.webp"
           alt="The Grounds Meat & Deli hero banner"
-          className="w-full h-auto object-contain"
+          className="hidden md:block w-full h-auto object-contain"
           fetchPriority="high"
         />
       </a>
