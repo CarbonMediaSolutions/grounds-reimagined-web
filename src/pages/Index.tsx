@@ -5,6 +5,7 @@ import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { useIsMobile } from "@/hooks/use-mobile";
 import teamImage from "@/assets/team.jpg";
 import heritage1945 from "@/assets/heritage-1945.webp";
 import heritage1959 from "@/assets/heritage-1959.jpg";
@@ -15,6 +16,7 @@ import heritage2023 from "@/assets/heritage-2023.webp";
 const Index = () => {
   const [email, setEmail] = useState("");
   const [currentSlide, setCurrentSlide] = useState(0);
+  const isMobile = useIsMobile();
   const [isSubscribing, setIsSubscribing] = useState(false);
   const { toast } = useToast();
 
@@ -83,8 +85,9 @@ const Index = () => {
     },
   ];
 
-  // Show 2 items at a time, so we have ceil(5/2) = 3 slides
-  const totalSlides = Math.ceil(timelineItems.length / 2);
+  // Show 1 item on mobile, 2 on desktop
+  const itemsPerSlide = isMobile ? 1 : 2;
+  const totalSlides = Math.ceil(timelineItems.length / itemsPerSlide);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % totalSlides);
@@ -95,23 +98,23 @@ const Index = () => {
   };
 
   const getCurrentItems = () => {
-    const startIndex = currentSlide * 2;
-    return timelineItems.slice(startIndex, startIndex + 2);
+    const startIndex = currentSlide * itemsPerSlide;
+    return timelineItems.slice(startIndex, startIndex + itemsPerSlide);
   };
 
   return (
     <div>
-      {/* Hero Section - Clickable WhatsApp Banner */}
+      {/* Hero Section - Clickable WhatsApp Banner - Full Width on Mobile */}
       <a 
         href="https://wa.me/27000000000" 
         target="_blank" 
         rel="noopener noreferrer"
-        className="block relative min-h-[50vh] md:min-h-[60vh] overflow-hidden cursor-pointer"
+        className="block relative w-full overflow-hidden cursor-pointer"
       >
         <img
           src="/images/hero-banner.webp"
           alt="The Grounds Meat & Deli hero banner"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="w-full h-auto object-contain"
           fetchPriority="high"
         />
       </a>
