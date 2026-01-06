@@ -22,9 +22,9 @@ const Footer = () => {
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
           {/* Links */}
-          <div>
+          <div className="text-center md:text-left">
             <h3 className="font-display text-xl mb-6 border-b border-cream/20 pb-2">Links</h3>
             <ul className="space-y-3">
               <li>
@@ -60,44 +60,44 @@ const Footer = () => {
             </ul>
           </div>
 
+          {/* Socials */}
+          <div className="text-center">
+            <h3 className="font-display text-xl mb-6 border-b border-cream/20 pb-2">Socials</h3>
+            <div className="flex gap-4 justify-center">
+              <a
+                href="https://www.instagram.com/thegrounds_deli/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-cream/10 flex items-center justify-center hover:bg-cream/20 transition-colors"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.facebook.com/p/The-Grounds-Meat-Deli-61550779858277/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-cream/10 flex items-center justify-center hover:bg-cream/20 transition-colors"
+              >
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a
+                href="https://wa.me/27000000000"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-[#25D366] flex items-center justify-center hover:bg-[#20BD5A] transition-colors text-white"
+              >
+                <WhatsAppIcon className="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+
           {/* Visit Us */}
-          <div className="text-right md:text-right">
+          <div className="text-center md:text-right">
             <h3 className="font-display text-xl mb-6 border-b border-cream/20 pb-2">Visit Us</h3>
-            <p className="text-cream/80 mb-6">
+            <p className="text-cream/80">
               76 Edward Road, Bellville,<br />
               Cape Town.
             </p>
-            
-            {/* Socials */}
-            <div>
-              <h4 className="font-display text-lg mb-4 border-b border-cream/20 pb-2">Socials</h4>
-              <div className="flex gap-4 justify-end">
-                <a
-                  href="https://www.instagram.com/thegrounds_deli/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-cream/10 flex items-center justify-center hover:bg-cream/20 transition-colors"
-                >
-                  <Instagram className="w-5 h-5" />
-                </a>
-                <a
-                  href="https://www.facebook.com/p/The-Grounds-Meat-Deli-61550779858277/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-cream/10 flex items-center justify-center hover:bg-cream/20 transition-colors"
-                >
-                  <Facebook className="w-5 h-5" />
-                </a>
-                <a
-                  href="https://wa.me/27000000000"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-[#25D366] flex items-center justify-center hover:bg-[#20BD5A] transition-colors text-white"
-                >
-                  <WhatsAppIcon className="w-5 h-5" />
-                </a>
-              </div>
-            </div>
           </div>
         </div>
 
