@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import teamImage from "@/assets/team.jpg";
-import shopInterior from "@/assets/shop-interior.jpg";
 import aboutSlide1 from "@/assets/about-slide-1.jpg";
 import aboutSlide2 from "@/assets/about-slide-2.jpg";
 import aboutSlide3 from "@/assets/about-slide-3.jpg";
@@ -128,14 +127,6 @@ const About = () => {
             </div>
           </div>
 
-          {/* Shop Interior */}
-          <div className="animate-fade-up mb-20">
-            <img
-              src={shopInterior}
-              alt="Our beautiful shop interior"
-              className="rounded-2xl shadow-elevated w-full object-cover aspect-[21/9]"
-            />
-          </div>
         </div>
       </section>
 
