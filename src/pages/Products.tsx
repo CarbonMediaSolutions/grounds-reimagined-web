@@ -36,9 +36,9 @@ const Products = () => {
   ];
 
   const hampers = [
-    { name: "The Grounds Mini Hamper", price: "R450", pdf: "/hampers/mini-hamper.pdf" },
-    { name: "The Grounds Midi Hamper", price: "R850", pdf: "/hampers/midi-hamper.pdf" },
-    { name: "The Grounds Maxi Hamper", price: "R1,250", pdf: "/hampers/maxi-hamper.pdf" },
+    { name: "The Grounds Mini Hamper", price: "R2,099.99", pdf: "/hampers/mini-hamper.pdf" },
+    { name: "The Grounds Midi Hamper", price: "R2,899.99", pdf: "/hampers/midi-hamper.pdf" },
+    { name: "The Grounds Maxi Hamper", price: "R3,899.99", pdf: "/hampers/maxi-hamper.pdf" },
   ];
 
   return (
