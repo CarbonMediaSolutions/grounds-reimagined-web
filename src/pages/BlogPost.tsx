@@ -88,9 +88,10 @@ const BlogPost = () => {
           />
         )}
 
-        <div className="prose prose-stone max-w-none text-foreground leading-relaxed whitespace-pre-wrap">
-          {post.content}
-        </div>
+        <div
+          className="prose prose-stone max-w-none text-foreground leading-relaxed"
+          dangerouslySetInnerHTML={{ __html: post.content }}
+        />
       </div>
     </article>
   );
