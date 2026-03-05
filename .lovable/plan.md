@@ -1,29 +1,23 @@
 
+## Fix Blog Post Content Spacing
 
-## Add Rich Text Editing to Blog Admin
+**Problem:** TipTap generates proper HTML with `<p>`, `<ul>`, `<h2>` tags etc., but the rendered blog post loses spacing between paragraphs. The Tailwind `prose` class should handle this, but custom styles are likely interfering.
 
-Currently the blog content uses a plain `<Textarea>` and renders with `whitespace-pre-wrap` (plain text). To support bold, italics, bullet points, etc., we need a rich text editor.
+**Root Cause:** The `prose` utility applies default colors to child elements, but `text-foreground` on the container and potentially the base styles (e.g., all elements getting border styling) can conflict with prose's built-in spacing and color rules.
 
-### Approach
+**Fix in `src/pages/BlogPost.tsx`:**
+- Change the prose container classes to ensure proper paragraph spacing is preserved
+- Use `prose-p:mb-4` and related prose modifiers if needed
 
-**Install TipTap** — a headless rich text editor for React that's lightweight and extensible.
+**Fix in `src/index.css`:**
+- Add styles ensuring `.prose p`, `.prose ul`, `.prose ol`, `.prose blockquote` retain proper margins, since base layer resets or other global styles may strip them
 
-**Packages to add:**
-- `@tiptap/react`
-- `@tiptap/starter-kit` (includes bold, italic, headings, bullet lists, ordered lists, blockquote, code, etc.)
-- `@tiptap/extension-underline`
+**Changes:**
+1. **`src/pages/BlogPost.tsx`** — Update the content div classes to `prose prose-stone prose-lg max-w-none` and remove `text-foreground leading-relaxed` which can conflict with prose defaults.
 
-### Changes
-
-1. **Create `src/components/RichTextEditor.tsx`** — A reusable TipTap editor component with a toolbar (bold, italic, underline, bullet list, ordered list, headings, blockquote). Content stored as HTML.
-
-2. **Update `src/pages/admin/BlogAdmin.tsx`** — Replace the content `<Textarea>` with the new `RichTextEditor`. The `content` state will now store HTML strings.
-
-3. **Update `src/pages/BlogPost.tsx`** — Change from `{post.content}` with `whitespace-pre-wrap` to `dangerouslySetInnerHTML={{ __html: post.content }}` so HTML content renders properly with the existing `prose` classes.
-
-4. **Update `src/pages/Blogs.tsx`** — If blog cards show content snippets, strip HTML tags for the preview text.
-
-### Notes
-- Existing plain-text posts will still display fine since HTML rendering handles plain text.
-- When pasting from Word/Google Docs, TipTap automatically preserves bold, italic, and list formatting.
-
+2. **`src/index.css`** — Add a small block ensuring prose elements get proper spacing:
+   ```css
+   .prose p { margin-bottom: 1em; }
+   .prose ul, .prose ol { margin-bottom: 1em; }
+   ```
+   This ensures paragraph breaks from TipTap's `<p>` tags render with visible spacing.
