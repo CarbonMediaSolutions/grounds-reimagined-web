@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import RichTextEditor from "@/components/RichTextEditor";
 import { Switch } from "@/components/ui/switch";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
@@ -227,13 +228,11 @@ const BlogAdmin = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="content">Content</Label>
-                <Textarea
-                  id="content"
-                  value={content}
-                  onChange={(e) => setContent(e.target.value)}
+                <Label>Content</Label>
+                <RichTextEditor
+                  content={content}
+                  onChange={setContent}
                   placeholder="Write your blog post..."
-                  className="min-h-[200px]"
                 />
               </div>
 
