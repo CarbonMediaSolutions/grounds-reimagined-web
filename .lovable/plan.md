@@ -1,23 +1,14 @@
 
-## Fix Blog Post Content Spacing
 
-**Problem:** TipTap generates proper HTML with `<p>`, `<ul>`, `<h2>` tags etc., but the rendered blog post loses spacing between paragraphs. The Tailwind `prose` class should handle this, but custom styles are likely interfering.
+## Remove Lovable Branding & Use Grounds Logo for Search
 
-**Root Cause:** The `prose` utility applies default colors to child elements, but `text-foreground` on the container and potentially the base styles (e.g., all elements getting border styling) can conflict with prose's built-in spacing and color rules.
+**Changes needed:**
 
-**Fix in `src/pages/BlogPost.tsx`:**
-- Change the prose container classes to ensure proper paragraph spacing is preserved
-- Use `prose-p:mb-4` and related prose modifiers if needed
+1. **`index.html`** — Replace the Lovable OpenGraph/Twitter images with the Grounds logo (`/favicon.png`) so Google and social previews show your branding instead of the Lovable placeholder:
+   - Line 23: `og:image` → `/favicon.png`
+   - Line 28: `twitter:image` → `/favicon.png`
 
-**Fix in `src/index.css`:**
-- Add styles ensuring `.prose p`, `.prose ul`, `.prose ol`, `.prose blockquote` retain proper margins, since base layer resets or other global styles may strip them
+2. **Hide the "Edit in Lovable" badge** — This is a setting you toggle in your project: **Settings → Hide 'Lovable' Badge**. No code change needed for this.
 
-**Changes:**
-1. **`src/pages/BlogPost.tsx`** — Update the content div classes to `prose prose-stone prose-lg max-w-none` and remove `text-foreground leading-relaxed` which can conflict with prose defaults.
+The favicon is already set to your Grounds logo (`/favicon.png`). The only code change is swapping the two social/search preview image URLs.
 
-2. **`src/index.css`** — Add a small block ensuring prose elements get proper spacing:
-   ```css
-   .prose p { margin-bottom: 1em; }
-   .prose ul, .prose ol { margin-bottom: 1em; }
-   ```
-   This ensures paragraph breaks from TipTap's `<p>` tags render with visible spacing.
