@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://grounds-reimagined-web.lovable.app/sitemap.xml
+Sitemap: https://www.grounds.co.za/sitemap.xml

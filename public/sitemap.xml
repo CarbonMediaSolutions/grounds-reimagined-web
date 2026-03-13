@@ -1,57 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaszones.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://grounds-reimagined-web.lovable.app/</loc>
+    <loc>https://www.grounds.co.za/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://grounds-reimagined-web.lovable.app/about</loc>
+    <loc>https://www.grounds.co.za/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://grounds-reimagined-web.lovable.app/products</loc>
+    <loc>https://www.grounds.co.za/products</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://grounds-reimagined-web.lovable.app/blogs</loc>
+    <loc>https://www.grounds.co.za/blogs</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://grounds-reimagined-web.lovable.app/contact</loc>
+    <loc>https://www.grounds.co.za/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://grounds-reimagined-web.lovable.app/recipes/burnt-ends</loc>
+    <loc>https://www.grounds.co.za/recipes/burnt-ends</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://grounds-reimagined-web.lovable.app/recipes/lamb-shank</loc>
+    <loc>https://www.grounds.co.za/recipes/lamb-shank</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://grounds-reimagined-web.lovable.app/recipes/ragu</loc>
+    <loc>https://www.grounds.co.za/recipes/ragu</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://grounds-reimagined-web.lovable.app/recipes/gammon</loc>
+    <loc>https://www.grounds.co.za/recipes/gammon</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://grounds-reimagined-web.lovable.app/recipes/pork-belly</loc>
+    <loc>https://www.grounds.co.za/recipes/pork-belly</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://grounds-reimagined-web.lovable.app/recipes/rib-stew</loc>
+    <loc>https://www.grounds.co.za/recipes/rib-stew</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
