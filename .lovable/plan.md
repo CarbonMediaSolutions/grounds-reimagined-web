@@ -1,23 +1,20 @@
 
-## Fix Blog Post Content Spacing
 
-**Problem:** TipTap generates proper HTML with `<p>`, `<ul>`, `<h2>` tags etc., but the rendered blog post loses spacing between paragraphs. The Tailwind `prose` class should handle this, but custom styles are likely interfering.
+## Fix Favicon: Replace heart-shaped favicon.ico with brand logo
 
-**Root Cause:** The `prose` utility applies default colors to child elements, but `text-foreground` on the container and potentially the base styles (e.g., all elements getting border styling) can conflict with prose's built-in spacing and color rules.
+**Problem:** The project ships a legacy `public/favicon.ico` that shows a heart icon (Lovable's default). Browsers and Google often fetch `/favicon.ico` by default, ignoring the PNG declaration.
 
-**Fix in `src/pages/BlogPost.tsx`:**
-- Change the prose container classes to ensure proper paragraph spacing is preserved
-- Use `prose-p:mb-4` and related prose modifiers if needed
+**Solution:**
 
-**Fix in `src/index.css`:**
-- Add styles ensuring `.prose p`, `.prose ul`, `.prose ol`, `.prose blockquote` retain proper margins, since base layer resets or other global styles may strip them
+1. **Delete `public/favicon.ico`** — remove the legacy heart icon file.
 
-**Changes:**
-1. **`src/pages/BlogPost.tsx`** — Update the content div classes to `prose prose-stone prose-lg max-w-none` and remove `text-foreground leading-relaxed` which can conflict with prose defaults.
-
-2. **`src/index.css`** — Add a small block ensuring prose elements get proper spacing:
-   ```css
-   .prose p { margin-bottom: 1em; }
-   .prose ul, .prose ol { margin-bottom: 1em; }
+2. **Update `index.html`** — change the favicon link to also explicitly reference `.ico` format, and add a second link for the PNG as an Apple touch icon:
+   ```html
+   <link rel="icon" href="/favicon.png" type="image/png" sizes="any" />
    ```
-   This ensures paragraph breaks from TipTap's `<p>` tags render with visible spacing.
+   Since we don't have an actual `.ico` version of the logo, we keep the PNG reference but ensure there's no competing `.ico` file on the server. Browsers that request `/favicon.ico` will get a 404 and fall back to the declared `<link>` tag.
+
+3. **Optionally convert the PNG to ICO** — If you'd like a proper `.ico` file, you'd need to provide one or we can keep the PNG-only approach, which modern browsers support well.
+
+**Technical note:** The key fix is simply deleting the old `public/favicon.ico` so it stops being served. The existing `<link rel="icon" href="/favicon.png">` tag is correct and sufficient for modern browsers and Google.
+
