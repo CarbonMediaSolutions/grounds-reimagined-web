@@ -1,23 +1,37 @@
 
-## Fix Blog Post Content Spacing
 
-**Problem:** TipTap generates proper HTML with `<p>`, `<ul>`, `<h2>` tags etc., but the rendered blog post loses spacing between paragraphs. The Tailwind `prose` class should handle this, but custom styles are likely interfering.
+## Update Favicon & Meta Tags for Brand Identity
 
-**Root Cause:** The `prose` utility applies default colors to child elements, but `text-foreground` on the container and potentially the base styles (e.g., all elements getting border styling) can conflict with prose's built-in spacing and color rules.
+**What changes:**
 
-**Fix in `src/pages/BlogPost.tsx`:**
-- Change the prose container classes to ensure proper paragraph spacing is preserved
-- Use `prose-p:mb-4` and related prose modifiers if needed
+### 1. Update `index.html` `<head>` section
+- Replace the single `<link rel="icon" href="/favicon.png">` with multiple favicon references:
+  - `/favicon.ico` (standard)
+  - `/favicon-32x32.png` (32×32)
+  - `/favicon-16x16.png` (16×16)
+  - `/apple-touch-icon.png` (Apple devices)
+- Update `<title>` to "Grounds Reimagined"
+- Keep existing `<meta name="description">` (already suitable)
+- Update OG image tags (`og:image`) to point to `/og-image.png`
+- Add `og:url` pointing to `https://www.grounds.co.za`
+- Update Twitter card image to `/og-image.png`
+- Remove old `/favicon.png` reference
 
-**Fix in `src/index.css`:**
-- Add styles ensuring `.prose p`, `.prose ul`, `.prose ol`, `.prose blockquote` retain proper margins, since base layer resets or other global styles may strip them
+### 2. Clean up `public/` folder
+- Delete `public/favicon.png` (old logo file)
+- No new image files created — you'll upload `favicon.ico`, `favicon-32x32.png`, `favicon-16x16.png`, `apple-touch-icon.png`, and `og-image.png` separately
 
-**Changes:**
-1. **`src/pages/BlogPost.tsx`** — Update the content div classes to `prose prose-stone prose-lg max-w-none` and remove `text-foreground leading-relaxed` which can conflict with prose defaults.
+### Technical detail
 
-2. **`src/index.css`** — Add a small block ensuring prose elements get proper spacing:
-   ```css
-   .prose p { margin-bottom: 1em; }
-   .prose ul, .prose ol { margin-bottom: 1em; }
-   ```
-   This ensures paragraph breaks from TipTap's `<p>` tags render with visible spacing.
+The updated favicon block in `<head>` will be:
+```html
+<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+```
+
+OG/Twitter images will reference `/og-image.png` with absolute URL `https://www.grounds.co.za/og-image.png`.
+
+Everything else in `<head>` (GTM, Meta Pixel, fonts, analytics, canonical) stays unchanged.
+
