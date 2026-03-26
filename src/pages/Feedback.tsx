@@ -1,4 +1,5 @@
 import { useState } from "react";
+import logo from "@/assets/logo.png";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
@@ -87,7 +88,7 @@ const Feedback = () => {
     <div className="min-h-screen bg-cream flex flex-col items-center justify-center px-4 py-8">
       {/* Logo */}
       <div className="mb-6">
-        <img src="/logo.png" alt="The Grounds" className="h-16 w-auto mx-auto" />
+        <img src={logo} alt="The Grounds" className="h-16 w-auto mx-auto" />
       </div>
 
       {/* Progress bar - shown during questions */}
@@ -294,7 +295,7 @@ const Feedback = () => {
                     className="w-full"
                     onClick={() =>
                       window.open(
-                        "https://search.google.com/local/writereview?placeid=ChIJp3EXAMPLE",
+                        "https://www.google.com/search?sa=X&sca_esv=4e0bfa84728bf4dd&rlz=1C5CHFA_enPT1152PT1152&sxsrf=ANbL-n4_MPTIrJzbsJnVHd57yJpyZ29Acg:1774553596586&q=The+Grounds+Meat+%26+Deli+Reviews&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDEyMTW2MDA3MzCxMLQwNrAwMN7AyPiKUT4kI1XBvSi_NC-lWME3NbFEQU3BJTUnUyEotSwztbx4ESshFQBBoaFhXwAAAA&rldimm=14245380760481830803&tbm=lcl&hl=en-FR&ved=2ahUKEwiR3Yimp76TAxU8nycCHYznBJ4Q9fQKegQIUBAG&biw=1920&bih=837&dpr=1#lkt=LocalPoiReviews",
                         "_blank"
                       )
                     }
