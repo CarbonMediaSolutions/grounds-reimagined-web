@@ -22,6 +22,7 @@ import Blogs from "./pages/Blogs";
 import BlogPost from "./pages/BlogPost";
 import AdminLogin from "./pages/admin/AdminLogin";
 import BlogAdmin from "./pages/admin/BlogAdmin";
+import Feedback from "./pages/Feedback";
 
 const queryClient = new QueryClient();
 
@@ -32,30 +33,41 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
-        <div className="min-h-screen flex flex-col">
-          <Navbar />
-          <main className="flex-1">
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/products" element={<Products />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/blogs" element={<Blogs />} />
-              <Route path="/blogs/:id" element={<BlogPost />} />
-              <Route path="/admin/login" element={<AdminLogin />} />
-              <Route path="/admin/blogs" element={<BlogAdmin />} />
-              <Route path="/recipes/burnt-ends" element={<BurntEnds />} />
-              <Route path="/recipes/lamb-shank" element={<LambShank />} />
-              <Route path="/recipes/ragu" element={<Ragu />} />
-              <Route path="/recipes/gammon" element={<Gammon />} />
-              <Route path="/recipes/pork-belly" element={<PorkBelly />} />
-              <Route path="/recipes/rib-stew" element={<RibStew />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </main>
-          <Footer />
-          <WhatsAppButton />
-        </div>
+        <Routes>
+          {/* Standalone page - no nav/footer */}
+          <Route path="/feedback" element={<Feedback />} />
+
+          {/* Main layout with nav/footer */}
+          <Route
+            path="*"
+            element={
+              <div className="min-h-screen flex flex-col">
+                <Navbar />
+                <main className="flex-1">
+                  <Routes>
+                    <Route path="/" element={<Index />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/products" element={<Products />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/blogs" element={<Blogs />} />
+                    <Route path="/blogs/:id" element={<BlogPost />} />
+                    <Route path="/admin/login" element={<AdminLogin />} />
+                    <Route path="/admin/blogs" element={<BlogAdmin />} />
+                    <Route path="/recipes/burnt-ends" element={<BurntEnds />} />
+                    <Route path="/recipes/lamb-shank" element={<LambShank />} />
+                    <Route path="/recipes/ragu" element={<Ragu />} />
+                    <Route path="/recipes/gammon" element={<Gammon />} />
+                    <Route path="/recipes/pork-belly" element={<PorkBelly />} />
+                    <Route path="/recipes/rib-stew" element={<RibStew />} />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </main>
+                <Footer />
+                <WhatsAppButton />
+              </div>
+            }
+          />
+        </Routes>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
