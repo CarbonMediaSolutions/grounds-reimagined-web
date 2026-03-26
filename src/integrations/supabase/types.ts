@@ -50,6 +50,39 @@ export type Database = {
         }
         Relationships: []
       }
+      feedback_responses: {
+        Row: {
+          created_at: string
+          email: string | null
+          found_everything: string
+          id: string
+          overall_experience: string
+          product_quality: string
+          staff_helpful: string
+          store_experience: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          found_everything: string
+          id?: string
+          overall_experience: string
+          product_quality: string
+          staff_helpful: string
+          store_experience: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          found_everything?: string
+          id?: string
+          overall_experience?: string
+          product_quality?: string
+          staff_helpful?: string
+          store_experience?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           id: string
