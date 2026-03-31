@@ -28,6 +28,7 @@ const Feedback = () => {
     email: "",
   });
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const { toast } = useToast();
 
