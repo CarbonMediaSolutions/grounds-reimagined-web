@@ -316,7 +316,6 @@ const Feedback = () => {
           {/* SCREEN 7: Thank You */}
           {step === 7 && (
             <div className="text-center space-y-6">
-              <div className="text-5xl">🙏</div>
               <h2 className="text-2xl font-display font-bold text-foreground">
                 Thank you for your feedback!
               </h2>
