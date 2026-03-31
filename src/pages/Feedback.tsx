@@ -135,13 +135,13 @@ const Feedback = () => {
               <div className="space-y-3">
                 {["Excellent", "Good", "Average", "Poor", "Very Poor"].map((opt) => (
                   <Button
-                    key={opt.value}
+                    key={opt}
                     variant="outline"
                     size="lg"
-                    className="w-full text-base justify-start"
-                    onClick={() => selectOption("overall_experience", opt.value)}
+                    className="w-full text-base"
+                    onClick={() => selectOption("overall_experience", opt)}
                   >
-                    {opt.label}
+                    {opt}
                   </Button>
                 ))}
               </div>
