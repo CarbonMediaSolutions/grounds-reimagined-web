@@ -90,7 +90,7 @@ const Feedback = () => {
     <div className="min-h-screen bg-cream flex flex-col items-center justify-center px-4 py-8">
       {/* Logo */}
       <div className="mb-6">
-        <img src={logo} alt="The Grounds" className="h-16 w-auto mx-auto" />
+        <img src={logo} alt="The Grounds" className="h-24 w-auto mx-auto" />
       </div>
 
       {/* Progress bar - shown during questions */}
