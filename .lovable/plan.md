@@ -1,20 +1,23 @@
 
 
-## Set Up Brand Logo as Favicon and OG Image
+## Feedback Page Updates
 
-The uploaded logo will be copied to the `public/` folder as the favicon and social preview image files referenced in `index.html`.
+### Changes to `src/pages/Feedback.tsx`
 
-### Steps
+**1. Enlarge logo** — Change `h-16` to `h-24` on the logo image.
 
-1. **Copy the uploaded logo** to multiple locations in `public/`:
-   - `public/favicon.ico` — standard favicon
-   - `public/favicon-32x32.png` — 32px favicon
-   - `public/favicon-16x16.png` — 16px favicon
-   - `public/apple-touch-icon.png` — Apple devices
-   - `public/og-image.png` — Open Graph / Twitter social preview
+**2. Add phone number field for unhappy customers on Step 6** — Use the `isPositive()` check. If feedback is negative, show an optional phone number field with copy like: *"We'd love the chance to make things right. Leave your number and we'll reach out to hear your feedback."* If positive, keep the existing email/newsletter capture. Add `phone` state variable.
 
-2. **No code changes needed** — `index.html` already references all these files correctly.
+**3. Remove emoji** — Remove the `🙏` div on the thank-you screen (step 7). Also remove the star emojis from step 1 options and the `⭐` from the review button text.
 
-### Result
-Google, social platforms, and browser tabs will all display The Grounds logo instead of any legacy/placeholder icon.
+### Database migration
+
+Add a `phone` column (nullable text) to the `feedback_responses` table so the contact number can be stored.
+
+### Flow summary
+
+- Steps 1-5: unchanged (except star emojis removed from step 1 labels)
+- Step 6 (positive): email capture for newsletter (unchanged)
+- Step 6 (negative): phone number field with warm, optional wording + email field kept
+- Step 7: no emoji, just the thank-you text and conditional Google review prompt
 
