@@ -334,7 +334,7 @@ const Feedback = () => {
                       )
                     }
                   >
-                    ⭐ Leave a Review
+                    Leave a Review
                   </Button>
                 </div>
               ) : (

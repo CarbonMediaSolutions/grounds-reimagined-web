@@ -57,6 +57,7 @@ export type Database = {
           found_everything: string
           id: string
           overall_experience: string
+          phone: string | null
           product_quality: string
           staff_helpful: string
           store_experience: string
@@ -67,6 +68,7 @@ export type Database = {
           found_everything: string
           id?: string
           overall_experience: string
+          phone?: string | null
           product_quality: string
           staff_helpful: string
           store_experience: string
@@ -77,6 +79,7 @@ export type Database = {
           found_everything?: string
           id?: string
           overall_experience?: string
+          phone?: string | null
           product_quality?: string
           staff_helpful?: string
           store_experience?: string
