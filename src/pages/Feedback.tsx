@@ -133,13 +133,7 @@ const Feedback = () => {
                 How was your experience today?
               </h2>
               <div className="space-y-3">
-                {[
-                  { label: "⭐⭐⭐⭐⭐ Excellent", value: "Excellent" },
-                  { label: "⭐⭐⭐⭐ Good", value: "Good" },
-                  { label: "⭐⭐⭐ Average", value: "Average" },
-                  { label: "⭐⭐ Poor", value: "Poor" },
-                  { label: "⭐ Very Poor", value: "Very Poor" },
-                ].map((opt) => (
+                {["Excellent", "Good", "Average", "Poor", "Very Poor"].map((opt) => (
                   <Button
                     key={opt.value}
                     variant="outline"
