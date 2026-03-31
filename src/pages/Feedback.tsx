@@ -236,41 +236,80 @@ const Feedback = () => {
             </div>
           )}
 
-          {/* SCREEN 6: Email Capture */}
+          {/* SCREEN 6: Email / Phone Capture */}
           {step === 6 && (
             <div className="space-y-4 text-center">
-              <h2 className="text-xl font-display font-semibold text-foreground">
-                Stay in touch (optional)
-              </h2>
-              <p className="text-muted-foreground text-sm">
-                Would you like to receive monthly specials and updates?
-              </p>
-              <Input
-                type="email"
-                placeholder="your@email.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="text-base h-12"
-              />
-              <div className="space-y-2">
-                <Button
-                  size="lg"
-                  className="w-full"
-                  disabled={submitting}
-                  onClick={() => submitFeedback(true)}
-                >
-                  {submitting ? "Submitting..." : "Submit & Join"}
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="lg"
-                  className="w-full"
-                  disabled={submitting}
-                  onClick={() => submitFeedback(false)}
-                >
-                  Skip
-                </Button>
-              </div>
+              {isPositive() ? (
+                <>
+                  <h2 className="text-xl font-display font-semibold text-foreground">
+                    Stay in touch (optional)
+                  </h2>
+                  <p className="text-muted-foreground text-sm">
+                    Would you like to receive monthly specials and updates?
+                  </p>
+                  <Input
+                    type="email"
+                    placeholder="your@email.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="text-base h-12"
+                  />
+                  <div className="space-y-2">
+                    <Button
+                      size="lg"
+                      className="w-full"
+                      disabled={submitting}
+                      onClick={() => submitFeedback(true)}
+                    >
+                      {submitting ? "Submitting..." : "Submit & Join"}
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="lg"
+                      className="w-full"
+                      disabled={submitting}
+                      onClick={() => submitFeedback(false)}
+                    >
+                      Skip
+                    </Button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <h2 className="text-xl font-display font-semibold text-foreground">
+                    We'd love to make things right
+                  </h2>
+                  <p className="text-muted-foreground text-sm">
+                    Would you like us to reach out and hear your feedback? Leave your number below — completely optional.
+                  </p>
+                  <Input
+                    type="tel"
+                    placeholder="Your phone number"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    className="text-base h-12"
+                  />
+                  <div className="space-y-2">
+                    <Button
+                      size="lg"
+                      className="w-full"
+                      disabled={submitting}
+                      onClick={() => submitFeedback(false)}
+                    >
+                      {submitting ? "Submitting..." : "Submit Feedback"}
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="lg"
+                      className="w-full"
+                      disabled={submitting}
+                      onClick={() => { setPhone(""); submitFeedback(false); }}
+                    >
+                      Skip
+                    </Button>
+                  </div>
+                </>
+              )}
             </div>
           )}
 
