@@ -22,6 +22,7 @@ import Blogs from "./pages/Blogs";
 import BlogPost from "./pages/BlogPost";
 import AdminLogin from "./pages/admin/AdminLogin";
 import BlogAdmin from "./pages/admin/BlogAdmin";
+import FeedbackAdmin from "./pages/admin/FeedbackAdmin";
 import Feedback from "./pages/Feedback";
 
 const queryClient = new QueryClient();
