@@ -48,6 +48,7 @@ const Feedback = () => {
       const payload = {
         ...data,
         email: includeEmail ? email : null,
+        phone: phone || null,
       };
       const { error } = await supabase.from("feedback_responses").insert(payload);
       if (error) throw error;
