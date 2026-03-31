@@ -28,6 +28,7 @@ const Feedback = () => {
     email: "",
   });
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const { toast } = useToast();
 
@@ -47,6 +48,7 @@ const Feedback = () => {
       const payload = {
         ...data,
         email: includeEmail ? email : null,
+        phone: phone || null,
       };
       const { error } = await supabase.from("feedback_responses").insert(payload);
       if (error) throw error;
@@ -88,7 +90,7 @@ const Feedback = () => {
     <div className="min-h-screen bg-cream flex flex-col items-center justify-center px-4 py-8">
       {/* Logo */}
       <div className="mb-6">
-        <img src={logo} alt="The Grounds" className="h-16 w-auto mx-auto" />
+        <img src={logo} alt="The Grounds" className="h-24 w-auto mx-auto" />
       </div>
 
       {/* Progress bar - shown during questions */}
@@ -131,21 +133,15 @@ const Feedback = () => {
                 How was your experience today?
               </h2>
               <div className="space-y-3">
-                {[
-                  { label: "⭐⭐⭐⭐⭐ Excellent", value: "Excellent" },
-                  { label: "⭐⭐⭐⭐ Good", value: "Good" },
-                  { label: "⭐⭐⭐ Average", value: "Average" },
-                  { label: "⭐⭐ Poor", value: "Poor" },
-                  { label: "⭐ Very Poor", value: "Very Poor" },
-                ].map((opt) => (
+                {["Excellent", "Good", "Average", "Poor", "Very Poor"].map((opt) => (
                   <Button
-                    key={opt.value}
+                    key={opt}
                     variant="outline"
                     size="lg"
-                    className="w-full text-base justify-start"
-                    onClick={() => selectOption("overall_experience", opt.value)}
+                    className="w-full text-base"
+                    onClick={() => selectOption("overall_experience", opt)}
                   >
-                    {opt.label}
+                    {opt}
                   </Button>
                 ))}
               </div>
@@ -240,48 +236,86 @@ const Feedback = () => {
             </div>
           )}
 
-          {/* SCREEN 6: Email Capture */}
+          {/* SCREEN 6: Email / Phone Capture */}
           {step === 6 && (
             <div className="space-y-4 text-center">
-              <h2 className="text-xl font-display font-semibold text-foreground">
-                Stay in touch (optional)
-              </h2>
-              <p className="text-muted-foreground text-sm">
-                Would you like to receive monthly specials and updates?
-              </p>
-              <Input
-                type="email"
-                placeholder="your@email.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="text-base h-12"
-              />
-              <div className="space-y-2">
-                <Button
-                  size="lg"
-                  className="w-full"
-                  disabled={submitting}
-                  onClick={() => submitFeedback(true)}
-                >
-                  {submitting ? "Submitting..." : "Submit & Join"}
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="lg"
-                  className="w-full"
-                  disabled={submitting}
-                  onClick={() => submitFeedback(false)}
-                >
-                  Skip
-                </Button>
-              </div>
+              {isPositive() ? (
+                <>
+                  <h2 className="text-xl font-display font-semibold text-foreground">
+                    Stay in touch (optional)
+                  </h2>
+                  <p className="text-muted-foreground text-sm">
+                    Would you like to receive monthly specials and updates?
+                  </p>
+                  <Input
+                    type="email"
+                    placeholder="your@email.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="text-base h-12"
+                  />
+                  <div className="space-y-2">
+                    <Button
+                      size="lg"
+                      className="w-full"
+                      disabled={submitting}
+                      onClick={() => submitFeedback(true)}
+                    >
+                      {submitting ? "Submitting..." : "Submit & Join"}
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="lg"
+                      className="w-full"
+                      disabled={submitting}
+                      onClick={() => submitFeedback(false)}
+                    >
+                      Skip
+                    </Button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <h2 className="text-xl font-display font-semibold text-foreground">
+                    We'd love to make things right
+                  </h2>
+                  <p className="text-muted-foreground text-sm">
+                    Would you like us to reach out and hear your feedback? Leave your number below — completely optional.
+                  </p>
+                  <Input
+                    type="tel"
+                    placeholder="Your phone number"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    className="text-base h-12"
+                  />
+                  <div className="space-y-2">
+                    <Button
+                      size="lg"
+                      className="w-full"
+                      disabled={submitting}
+                      onClick={() => submitFeedback(false)}
+                    >
+                      {submitting ? "Submitting..." : "Submit Feedback"}
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="lg"
+                      className="w-full"
+                      disabled={submitting}
+                      onClick={() => { setPhone(""); submitFeedback(false); }}
+                    >
+                      Skip
+                    </Button>
+                  </div>
+                </>
+              )}
             </div>
           )}
 
           {/* SCREEN 7: Thank You */}
           {step === 7 && (
             <div className="text-center space-y-6">
-              <div className="text-5xl">🙏</div>
               <h2 className="text-2xl font-display font-bold text-foreground">
                 Thank you for your feedback!
               </h2>
@@ -300,7 +334,7 @@ const Feedback = () => {
                       )
                     }
                   >
-                    ⭐ Leave a Review
+                    Leave a Review
                   </Button>
                 </div>
               ) : (

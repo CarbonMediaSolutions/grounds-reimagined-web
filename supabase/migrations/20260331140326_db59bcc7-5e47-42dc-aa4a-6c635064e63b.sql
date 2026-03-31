@@ -1,0 +1,1 @@
+ALTER TABLE public.feedback_responses ADD COLUMN phone text;
