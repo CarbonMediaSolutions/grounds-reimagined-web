@@ -1,23 +1,40 @@
 
 
-## Feedback Page Updates
+## Email Notifications + Admin Feedback Dashboard
 
-### Changes to `src/pages/Feedback.tsx`
+### 1. Email notification on each submission
 
-**1. Enlarge logo** — Change `h-16` to `h-24` on the logo image.
+**New Edge Function: `send-feedback-notification`**
 
-**2. Add phone number field for unhappy customers on Step 6** — Use the `isPositive()` check. If feedback is negative, show an optional phone number field with copy like: *"We'd love the chance to make things right. Leave your number and we'll reach out to hear your feedback."* If positive, keep the existing email/newsletter capture. Add `phone` state variable.
+When a feedback response is submitted, invoke this function to email a summary to `info@grounds.co.za` via the existing Resend integration. The email will include all answers, the customer's email/phone (if provided), and a positive/negative sentiment indicator.
 
-**3. Remove emoji** — Remove the `🙏` div on the thank-you screen (step 7). Also remove the star emojis from step 1 options and the `⭐` from the review button text.
+**Update `src/pages/Feedback.tsx`**: After the successful insert, call `supabase.functions.invoke('send-feedback-notification', { body: payload })`.
 
-### Database migration
+### 2. Admin Feedback Dashboard
 
-Add a `phone` column (nullable text) to the `feedback_responses` table so the contact number can be stored.
+**New page: `src/pages/admin/FeedbackAdmin.tsx`** at `/admin/feedback`
 
-### Flow summary
+- Protected behind the same admin auth gate used by BlogAdmin
+- Header with navigation back to blog admin and logout
+- Summary stats cards: total responses, positive %, negative %, responses with contact info
+- Filterable, sortable table showing all feedback responses:
+  - Date, overall experience, staff, product quality, store, found everything, email, phone
+  - Color-coded sentiment badges (green = positive, red = negative)
+- Date range filter (last 7 days, 30 days, all time)
+- Export to CSV button
 
-- Steps 1-5: unchanged (except star emojis removed from step 1 labels)
-- Step 6 (positive): email capture for newsletter (unchanged)
-- Step 6 (negative): phone number field with warm, optional wording + email field kept
-- Step 7: no emoji, just the thank-you text and conditional Google review prompt
+**RLS update**: Add a SELECT policy on `feedback_responses` for admin users so the dashboard can read responses.
+
+### 3. Route + Navigation
+
+- Add route `/admin/feedback` in `App.tsx`
+- Add a link to feedback dashboard from BlogAdmin header (and vice versa)
+
+### Files changed
+- `supabase/functions/send-feedback-notification/index.ts` (new)
+- `src/pages/admin/FeedbackAdmin.tsx` (new)
+- `src/pages/Feedback.tsx` (add email invoke after submit)
+- `src/App.tsx` (add route)
+- `src/pages/admin/BlogAdmin.tsx` (add nav link to feedback admin)
+- Database migration: add SELECT RLS policy for admins on `feedback_responses`
 
