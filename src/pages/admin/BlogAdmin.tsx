@@ -203,6 +203,9 @@ const BlogAdmin = () => {
             </h1>
           </div>
           <div className="flex gap-2">
+            <Button variant="outline" onClick={() => navigate("/admin/feedback")}>
+              Feedback
+            </Button>
             {!showForm && (
               <Button onClick={() => { resetForm(); setShowForm(true); }}>
                 <Plus className="w-4 h-4 mr-2" /> New Post

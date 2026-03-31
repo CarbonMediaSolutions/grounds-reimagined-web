@@ -53,6 +53,9 @@ const Feedback = () => {
       const { error } = await supabase.from("feedback_responses").insert(payload);
       if (error) throw error;
 
+      // Send email notification to store
+      supabase.functions.invoke("send-feedback-notification", { body: payload });
+
       // If email provided, also subscribe to mailing list
       if (includeEmail && email) {
         await supabase.functions.invoke("mailblaze-subscribe", {
