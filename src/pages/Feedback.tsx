@@ -332,7 +332,7 @@ const Feedback = () => {
                     className="w-full"
                     onClick={() =>
                       window.open(
-                        "https://www.google.com/search?sa=X&sca_esv=4e0bfa84728bf4dd&rlz=1C5CHFA_enPT1152PT1152&sxsrf=ANbL-n4_MPTIrJzbsJnVHd57yJpyZ29Acg:1774553596586&q=The+Grounds+Meat+%26+Deli+Reviews&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDEyMTW2MDA3MzCxMLQwNrAwMN7AyPiKUT4kI1XBvSi_NC-lWME3NbFEQU3BJTUnUyEotSwztbx4ESshFQBBoaFhXwAAAA&rldimm=14245380760481830803&tbm=lcl&hl=en-FR&ved=2ahUKEwiR3Yimp76TAxU8nycCHYznBJ4Q9fQKegQIUBAG&biw=1920&bih=837&dpr=1#lkt=LocalPoiReviews",
+                        "https://maps.google.com/?q=The+Grounds+Meat+%26+Deli,+76+Edward+St,+Bellville,+7530",
                         "_blank"
                       )
                     }
