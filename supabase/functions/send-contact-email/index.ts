@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -24,6 +25,23 @@ serve(async (req: Request): Promise<Response> => {
         JSON.stringify({ error: "Name and email are required" }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
+    }
+
+    // Persist to database first (so we have a record even if email fails)
+    const supabaseUrl = Deno.env.get("SUPABASE_URL");
+    const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+    if (supabaseUrl && serviceKey) {
+      try {
+        const admin = createClient(supabaseUrl, serviceKey);
+        const { error: insertError } = await admin
+          .from("contact_messages")
+          .insert({ name, email, message: message || null });
+        if (insertError) {
+          console.error("Failed to store contact message:", insertError);
+        }
+      } catch (e) {
+        console.error("DB insert exception:", e);
+      }
     }
 
     const apiKey = Deno.env.get("RESEND_API_KEY");
