@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
+import AdminNav from "@/components/admin/AdminNav";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -11,7 +12,7 @@ import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { LogOut, ArrowLeft, Download, MessageSquare, ThumbsUp, ThumbsDown, Phone } from "lucide-react";
+import { Download, MessageSquare, ThumbsUp, ThumbsDown, Phone } from "lucide-react";
 import { format } from "date-fns";
 
 interface FeedbackRow {
@@ -114,25 +115,14 @@ const FeedbackAdmin = () => {
   return (
     <div className="py-8">
       <div className="container-wide max-w-6xl mx-auto px-4">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center gap-4">
-            <Button variant="ghost" size="icon" onClick={() => navigate("/admin/blogs")}>
-              <ArrowLeft className="w-5 h-5" />
-            </Button>
-            <h1 className="font-display text-2xl md:text-3xl tracking-wider uppercase">
-              Feedback
-            </h1>
-          </div>
-          <div className="flex gap-2">
+        <AdminNav
+          title="Feedback"
+          actions={
             <Button variant="outline" onClick={exportCSV}>
               <Download className="w-4 h-4 mr-2" /> Export CSV
             </Button>
-            <Button variant="ghost" onClick={handleLogout}>
-              <LogOut className="w-4 h-4" />
-            </Button>
-          </div>
-        </div>
+          }
+        />
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
+import AdminNav from "@/components/admin/AdminNav";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -9,7 +10,7 @@ import RichTextEditor from "@/components/RichTextEditor";
 import { Switch } from "@/components/ui/switch";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { Pencil, Trash2, Plus, Sparkles, LogOut, ArrowLeft } from "lucide-react";
+import { Pencil, Trash2, Plus, Sparkles } from "lucide-react";
 import { format } from "date-fns";
 
 interface BlogPost {
@@ -192,30 +193,17 @@ const BlogAdmin = () => {
 
   return (
     <div className="py-8">
-      <div className="container-wide max-w-4xl mx-auto">
-        <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center gap-4">
-            <Button variant="ghost" size="icon" onClick={() => navigate("/blogs")}>
-              <ArrowLeft className="w-5 h-5" />
-            </Button>
-            <h1 className="font-display text-2xl md:text-3xl tracking-wider uppercase">
-              Manage Blog
-            </h1>
-          </div>
-          <div className="flex gap-2">
-            <Button variant="outline" onClick={() => navigate("/admin/feedback")}>
-              Feedback
-            </Button>
-            {!showForm && (
+      <div className="container-wide max-w-4xl mx-auto px-4">
+        <AdminNav
+          title="Manage Blog"
+          actions={
+            !showForm ? (
               <Button onClick={() => { resetForm(); setShowForm(true); }}>
                 <Plus className="w-4 h-4 mr-2" /> New Post
               </Button>
-            )}
-            <Button variant="ghost" onClick={handleLogout}>
-              <LogOut className="w-4 h-4" />
-            </Button>
-          </div>
-        </div>
+            ) : null
+          }
+        />
 
         {showForm && (
           <Card className="mb-8">
