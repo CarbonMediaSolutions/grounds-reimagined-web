@@ -47,7 +47,7 @@ const AdminLogin = () => {
       return;
     }
 
-    navigate("/admin/blogs");
+    navigate("/admin");
   };
 
   return (
