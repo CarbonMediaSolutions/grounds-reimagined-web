@@ -1,61 +1,36 @@
+## Remove Contact Form, Funnel to WhatsApp + Archive Improvements
 
+### 1. `src/pages/Contact.tsx` — replace form with WhatsApp CTA
+- Keep "Reach Out" hero, shop interior image, address, embedded map.
+- Remove form, submit handler, `useState`, `toast`, `supabase` imports, `Input`/`Textarea` imports.
+- New right-hand panel:
+  - Heading: "Chat with us on WhatsApp"
+  - Copy: "The fastest way to reach us — orders, questions, and special requests. We reply within trading hours."
+  - Large green button (`#25D366`) with official `WhatsAppIcon` → `https://wa.me/27608153050`, displays `+27 60 815 3050`
+  - Divider, then small muted line: "Prefer email? info@grounds.co.za" (`mailto:`)
 
-## Unified Admin Dashboard — Contact + Feedback Submissions
+### 2. `src/pages/admin/AdminHome.tsx` — relabel Contact tile
+- Tile caption changes from "messages" to "archived"
+- Add `Badge` "Archive — form removed" so admins know the form is no longer active
+- Keep unread badge if any unread messages remain
 
-### Problem
-Feedback submissions are stored in the database and viewable at `/admin/feedback`, but **contact form submissions are only emailed** — there's no record to display in an admin view. We need to store contact messages and surface both contact + feedback in one admin hub.
+### 3. `src/pages/admin/ContactAdmin.tsx` — archive enhancements
+- **Archive notice banner** at top: "The public contact form has been removed. This view is now an archive of historical messages."
+- **Search input**: filter by name, email, or message text (client-side over loaded rows)
+- **Bulk read actions**:
+  - Add a checkbox column + select-all checkbox in the table header
+  - When any row selected, show a toolbar with "Mark as read", "Mark as unread", and clear-selection
+  - Updates via `supabase.from("contact_messages").update({ read }).in("id", selectedIds)`
+- **CSV export** already exists — keep it (exports the currently filtered + searched set)
 
-### Solution
+### 4. Verification
+- After implementation, query `contact_messages` to confirm no new rows arrive after the form removal (manual check by user over time).
+- Confirm `/contact` no longer calls `send-contact-email`; the edge function and table remain in place untouched for archive integrity.
 
-**1. Store contact form submissions in the database**
+### Left untouched
+- `contact_messages` table, `send-contact-email` edge function, footer/navbar Contact link, floating WhatsApp bubble.
 
-New table `public.contact_messages`:
-- `id` (uuid, pk), `created_at` (timestamptz), `name` (text), `email` (text), `message` (text), `read` (boolean, default false)
-
-RLS policies:
-- `INSERT` → anyone (anon + authenticated) — so the public form can submit
-- `SELECT` / `UPDATE` → admins only (via `has_role`)
-
-Update `send-contact-email` Edge Function to also insert the row into `contact_messages` (using the service role key) so the message is captured even if the email send fails.
-
-**2. New unified Admin Dashboard hub at `/admin`**
-
-A landing page with three cards/tiles linking to:
-- Blog Posts (`/admin/blogs`)
-- Feedback Responses (`/admin/feedback`) — show count + recent positive/negative split
-- Contact Messages (`/admin/contact`) — show count + unread badge
-
-Redirect `/admin/login` success to `/admin` instead of `/admin/blogs`.
-
-**3. New page: `src/pages/admin/ContactAdmin.tsx`** at `/admin/contact`
-
-- Same admin-auth gate pattern as the others
-- Stats cards: Total messages, Unread, Last 7 days
-- Filterable table: Date, Name, Email, Message preview, Status (Read/Unread)
-- Click a row → dialog with full message, "Mark as read", and a `mailto:` reply button
-- Date range filter (7d / 30d / all) and unread-only toggle
-- Export to CSV
-
-**4. Cross-navigation**
-
-Replace the back-arrow header pattern in BlogAdmin and FeedbackAdmin with a small admin sub-nav (Blog · Feedback · Contact · Logout) so admins can move freely between the three sections. New ContactAdmin gets the same nav.
-
-### Files
-
-**New**
-- `src/pages/admin/AdminHome.tsx` — dashboard hub at `/admin`
-- `src/pages/admin/ContactAdmin.tsx` — contact messages list/detail
-- `src/components/admin/AdminNav.tsx` — shared admin sub-nav
-- Database migration: create `contact_messages` table + RLS
-
-**Edited**
-- `supabase/functions/send-contact-email/index.ts` — also insert into `contact_messages` before sending email
-- `src/App.tsx` — add `/admin` and `/admin/contact` routes
-- `src/pages/admin/AdminLogin.tsx` — redirect to `/admin` on success
-- `src/pages/admin/BlogAdmin.tsx` + `src/pages/admin/FeedbackAdmin.tsx` — use shared `AdminNav`
-
-### Technical notes
-- The contact insert in the edge function uses the service role key (already configured) so it bypasses RLS cleanly. The form continues to call only `send-contact-email` — no client-side DB writes, keeping the schema invisible to anonymous users beyond the existing function.
-- "Unread" is tracked via the `read` boolean; admins toggle it from the detail dialog.
-- All admin pages remain gated by `has_role(auth.uid(), 'admin')`.
-
+### Files changed
+- `src/pages/Contact.tsx`
+- `src/pages/admin/AdminHome.tsx`
+- `src/pages/admin/ContactAdmin.tsx`

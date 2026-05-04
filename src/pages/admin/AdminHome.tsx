@@ -87,10 +87,15 @@ const AdminHome = () => {
       icon: Mail,
       to: "/admin/contact",
       stat: `${stats.contact}`,
-      caption: "messages",
-      extra: stats.contactUnread > 0 ? (
-        <Badge variant="destructive" className="mt-3">{stats.contactUnread} unread</Badge>
-      ) : null,
+      caption: "archived",
+      extra: (
+        <div className="flex flex-wrap gap-2 mt-3">
+          <Badge variant="secondary">Archive — form removed</Badge>
+          {stats.contactUnread > 0 && (
+            <Badge variant="destructive">{stats.contactUnread} unread</Badge>
+          )}
+        </div>
+      ),
     },
   ];
 
