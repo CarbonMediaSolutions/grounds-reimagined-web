@@ -1,52 +1,14 @@
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { useState } from "react";
-import { toast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
 import shopInterior from "@/assets/shop-interior.jpg";
+import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
+import { Mail } from "lucide-react";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      const { data, error } = await supabase.functions.invoke("send-contact-email", {
-        body: formData,
-      });
-
-      if (error) throw error;
-
-      toast({
-        title: "Message Sent!",
-        description: "We'll get back to you as soon as possible.",
-      });
-      setFormData({ name: "", email: "", message: "" });
-    } catch (error) {
-      console.error("Error sending message:", error);
-      toast({
-        title: "Error",
-        description: "Failed to send message. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   return (
     <div>
       {/* Hero Section with Brick Background */}
       <section className="relative py-16 md:py-20">
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: "url('/images/brick-wall.webp')" }}
         />
@@ -61,11 +23,10 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Contact Form Section */}
+      {/* WhatsApp CTA Section */}
       <section className="section-padding bg-background">
         <div className="container-wide">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-            {/* Image */}
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="animate-fade-up">
               <img
                 src={shopInterior}
@@ -74,51 +35,46 @@ const Contact = () => {
               />
             </div>
 
-            {/* Form */}
             <div className="animate-fade-up" style={{ animationDelay: "0.2s" }}>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-charcoal mb-2">
-                    Name *
-                  </label>
-                  <Input
-                    id="name"
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="h-12 rounded-lg"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-charcoal mb-2">
-                    Email *
-                  </label>
-                  <Input
-                    id="email"
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="h-12 rounded-lg"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-charcoal mb-2">
-                    Suggestions or Questions
-                  </label>
-                  <Textarea
-                    id="message"
-                    rows={6}
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="rounded-lg resize-none"
-                  />
-                </div>
-                <Button type="submit" size="lg" className="w-full sm:w-auto" disabled={isSubmitting}>
-                  {isSubmitting ? "Sending..." : "Send Message"}
-                </Button>
-              </form>
+              <h2 className="font-display text-3xl md:text-4xl text-charcoal mb-4 tracking-wider">
+                Chat with us on WhatsApp
+              </h2>
+              <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
+                The fastest way to reach us — orders, questions, and special requests.
+                We reply within trading hours.
+              </p>
+
+              <Button
+                asChild
+                size="lg"
+                className="bg-[#25D366] hover:bg-[#1faa54] text-white h-auto py-4 px-6"
+              >
+                <a
+                  href="https://wa.me/27608153050"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3"
+                >
+                  <WhatsAppIcon className="w-6 h-6" />
+                  <span className="flex flex-col items-start leading-tight">
+                    <span className="text-sm opacity-90">Message us on WhatsApp</span>
+                    <span className="font-semibold text-lg">+27 60 815 3050</span>
+                  </span>
+                </a>
+              </Button>
+
+              <div className="mt-8 pt-6 border-t border-border">
+                <p className="text-sm text-muted-foreground flex items-center gap-2">
+                  <Mail className="w-4 h-4" />
+                  Prefer email?{" "}
+                  <a
+                    href="mailto:info@grounds.co.za"
+                    className="text-primary hover:underline"
+                  >
+                    info@grounds.co.za
+                  </a>
+                </p>
+              </div>
             </div>
           </div>
         </div>
